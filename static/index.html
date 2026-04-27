@@ -88,7 +88,7 @@
             </span>
           </div>
           <p class="mt-2 text-sm text-slate-600">
-            Each sentence is compared to the Kaggle red-flag database to surface risky clauses.
+            Each sentence is compared to the case database to surface risky clauses.
           </p>
 
           <label class="mt-5 block text-xs font-semibold uppercase tracking-wider text-slate-500">Terms of Service</label>
@@ -151,10 +151,18 @@
     const riskScore = document.getElementById("riskScore");
     const errorBox = document.getElementById("errorBox");
 
-    const ratingStyles = {
-      high: "border-rose-200 bg-rose-50 text-rose-700",
-      medium: "border-amber-200 bg-amber-50 text-amber-700",
-      low: "border-sky-200 bg-sky-50 text-sky-700",
+    const outcomeStyles = {
+      affirmed: "border-sky-200 bg-sky-50 text-sky-700",
+      applied: "border-sky-200 bg-sky-50 text-sky-700",
+      approved: "border-sky-200 bg-sky-50 text-sky-700",
+      cited: "border-slate-200 bg-slate-50 text-slate-700",
+      considered: "border-slate-200 bg-slate-50 text-slate-700",
+      discussed: "border-slate-200 bg-slate-50 text-slate-700",
+      distinguished: "border-amber-200 bg-amber-50 text-amber-700",
+      followed: "border-sky-200 bg-sky-50 text-sky-700",
+      "referred to": "border-slate-200 bg-slate-50 text-slate-700",
+      related: "border-slate-200 bg-slate-50 text-slate-700",
+      "text-corpus": "border-emerald-200 bg-emerald-50 text-emerald-700",
     };
 
     function setLoading(isLoading) {
@@ -174,37 +182,51 @@
       errorBox.textContent = "";
     }
 
-    function normalizeRating(rating) {
-      if (!rating) {
-        return "unrated";
+    function normalizeOutcome(outcome) {
+      if (!outcome) {
+        return "unknown";
       }
-      const normalized = rating.trim().toLowerCase();
-      if (normalized.startsWith("high")) {
-        return "high";
-      }
-      if (normalized.startsWith("medium")) {
-        return "medium";
-      }
-      if (normalized.startsWith("low")) {
-        return "low";
-      }
-      return "unrated";
+      return outcome.trim().toLowerCase().replace(/\s+/g, " ");
     }
 
-    function renderOverview(flags) {
+    function formatOutcome(outcome) {
+      return outcome
+        .split(" ")
+        .map((word) => (word ? word[0].toUpperCase() + word.slice(1) : word))
+        .join(" ");
+    }
+
+    function truncateText(value, maxLength) {
+      if (!value) {
+        return "";
+      }
+      if (value.length <= maxLength) {
+        return value;
+      }
+      return `${value.slice(0, maxLength).trim()}...`;
+    }
+
+    function renderOverview(flags, riskScoreValue) {
       if (!flags || flags.length === 0) {
         overviewText.textContent = "No semantic matches were found above the similarity threshold.";
         return;
       }
 
-      const counts = { high: 0, medium: 0, low: 0, unrated: 0 };
+      const counts = {};
       flags.forEach((flag) => {
-        counts[normalizeRating(flag.kaggle_rating)] += 1;
+        const outcomeKey = normalizeOutcome(flag.case_outcome);
+        counts[outcomeKey] = (counts[outcomeKey] || 0) + 1;
       });
 
-      overviewText.textContent =
-        `Detected ${flags.length} potential matches. High: ${counts.high}, ` +
-        `Medium: ${counts.medium}, Low: ${counts.low}.`;
+      const topOutcomes = Object.entries(counts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 3)
+        .map(([key, value]) => `${formatOutcome(key)}: ${value}`)
+        .join(", ");
+
+      const summary = topOutcomes ? ` Top outcomes: ${topOutcomes}.` : "";
+      const highRisk = Number.isFinite(riskScoreValue) ? riskScoreValue : 0;
+      overviewText.textContent = `Detected ${flags.length} matches.${summary} High-risk matches: ${highRisk}.`;
     }
 
     function renderFlags(flags) {
@@ -226,14 +248,14 @@
 
         const title = document.createElement("h3");
         title.className = "text-sm font-semibold text-slate-900";
-        title.textContent = flag.kaggle_title || "Matched Flag";
+        title.textContent = flag.case_title || "Matched Case";
 
         const badge = document.createElement("span");
-        const ratingKey = normalizeRating(flag.kaggle_rating);
+        const outcomeKey = normalizeOutcome(flag.case_outcome);
         badge.className = `rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide ${
-          ratingStyles[ratingKey] || "border-slate-200 bg-slate-50 text-slate-700"
+          outcomeStyles[outcomeKey] || "border-slate-200 bg-slate-50 text-slate-700"
         }`;
-        badge.textContent = flag.kaggle_rating || "Unrated";
+        badge.textContent = flag.case_outcome || "Unknown";
 
         header.appendChild(title);
         header.appendChild(badge);
@@ -244,7 +266,7 @@
 
         const explanation = document.createElement("p");
         explanation.className = "mt-2 text-sm font-medium text-slate-800";
-        explanation.textContent = flag.kaggle_explanation;
+        explanation.textContent = truncateText(flag.case_text, 320);
 
         wrapper.appendChild(header);
         wrapper.appendChild(snippet);
@@ -276,7 +298,7 @@
 
         riskScore.textContent = data.risk_score ?? "--";
         const flags = data.found_flags || [];
-        renderOverview(flags);
+        renderOverview(flags, data.risk_score ?? 0);
         renderFlags(flags);
       } catch (error) {
         showError(error.message || "Scan failed.");
