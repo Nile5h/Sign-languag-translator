@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TL;DR Legal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ["Fraunces", "serif"],
+            sans: ["Space Grotesk", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root {
+      --paper: #f7f2ea;
+      --ink: #1f1d1a;
+      --accent: #0f766e;
+      --rose: #ef4444;
+      --sun: #f59e0b;
+      --sky: #3b82f6;
+    }
+
+    body {
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(15, 118, 110, 0.12), transparent 45%),
+        radial-gradient(circle at 80% 10%, rgba(245, 158, 11, 0.15), transparent 40%),
+        linear-gradient(135deg, #fbf7f0 0%, #eef7f6 100%);
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .rise {
+      animation: rise 0.6s ease-out both;
+    }
+
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.2s;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="font-sans">
+  <div class="min-h-screen px-4 py-10">
+    <div class="mx-auto flex w-full max-w-6xl flex-col gap-8">
+      <header class="flex flex-col gap-3">
+        <p class="text-sm uppercase tracking-[0.3em] text-slate-500">TL;DR Legal</p>
+        <h1 class="font-display text-4xl text-slate-900 sm:text-5xl">Terms you can actually read.</h1>
+        <p class="max-w-2xl text-base text-slate-600">
+          Paste a Terms of Service document and compare it against a red-flag library using semantic similarity.
+        </p>
+      </header>
+
+      <main class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <section class="glass rise rounded-2xl p-6 shadow-lg">
+          <div class="flex items-center justify-between">
+            <h2 class="font-display text-2xl text-slate-900">Document Scan</h2>
+            <span class="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-700">
+              CPU Friendly
+            </span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600">
+            Each sentence is compared to the Kaggle red-flag database to surface risky clauses.
+          </p>
+
+          <label class="mt-5 block text-xs font-semibold uppercase tracking-wider text-slate-500">Terms of Service</label>
+          <textarea
+            id="tosInput"
+            class="mt-2 h-80 w-full rounded-xl border border-slate-200 bg-white/70 p-4 text-sm leading-relaxed text-slate-800 shadow-sm focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-200"
+            placeholder="Paste the full Terms of Service or privacy policy here..."
+          ></textarea>
+
+          <div class="mt-5 flex flex-wrap items-center gap-3">
+            <button
+              id="scanBtn"
+              class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-md transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-70"
+            >
+              <span id="scanSpinner" class="hidden h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></span>
+              <span id="scanLabel">Scan</span>
+            </button>
+            <p id="scanStatus" class="text-sm text-slate-500">Awaiting document.</p>
+          </div>
+        </section>
+
+        <section class="glass rise delay-1 rounded-2xl p-6 shadow-lg">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h2 class="font-display text-2xl text-slate-900">Report Card</h2>
+              <p class="mt-1 text-sm text-slate-600">Flags, explanations, and a quick risk score.</p>
+            </div>
+            <div class="rounded-xl bg-slate-900 px-4 py-3 text-center text-white">
+              <p class="text-xs uppercase tracking-[0.2em] text-slate-300">High-Risk Matches</p>
+              <p id="riskScore" class="font-display text-3xl">--</p>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-2xl border border-slate-200 bg-white/80 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Match Overview</p>
+            <p id="overviewText" class="mt-3 text-sm text-slate-700">
+              Paste a document and hit Scan to compare it against the red-flag library.
+            </p>
+          </div>
+
+          <div class="mt-6">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Matched Red Flags</p>
+            <div id="flagsList" class="mt-3 grid gap-4"></div>
+          </div>
+
+          <div id="errorBox" class="mt-6 hidden rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const scanBtn = document.getElementById("scanBtn");
+    const scanSpinner = document.getElementById("scanSpinner");
+    const scanLabel = document.getElementById("scanLabel");
+    const scanStatus = document.getElementById("scanStatus");
+    const tosInput = document.getElementById("tosInput");
+    const overviewText = document.getElementById("overviewText");
+    const flagsList = document.getElementById("flagsList");
+    const riskScore = document.getElementById("riskScore");
+    const errorBox = document.getElementById("errorBox");
+
+    const ratingStyles = {
+      high: "border-rose-200 bg-rose-50 text-rose-700",
+      medium: "border-amber-200 bg-amber-50 text-amber-700",
+      low: "border-sky-200 bg-sky-50 text-sky-700",
+    };
+
+    function setLoading(isLoading) {
+      scanBtn.disabled = isLoading;
+      scanSpinner.classList.toggle("hidden", !isLoading);
+      scanLabel.textContent = isLoading ? "Scanning" : "Scan";
+      scanStatus.textContent = isLoading ? "Analyzing terms..." : "Awaiting document.";
+    }
+
+    function showError(message) {
+      errorBox.textContent = message;
+      errorBox.classList.remove("hidden");
+    }
+
+    function clearError() {
+      errorBox.classList.add("hidden");
+      errorBox.textContent = "";
+    }
+
+    function normalizeRating(rating) {
+      if (!rating) {
+        return "unrated";
+      }
+      const normalized = rating.trim().toLowerCase();
+      if (normalized.startsWith("high")) {
+        return "high";
+      }
+      if (normalized.startsWith("medium")) {
+        return "medium";
+      }
+      if (normalized.startsWith("low")) {
+        return "low";
+      }
+      return "unrated";
+    }
+
+    function renderOverview(flags) {
+      if (!flags || flags.length === 0) {
+        overviewText.textContent = "No semantic matches were found above the similarity threshold.";
+        return;
+      }
+
+      const counts = { high: 0, medium: 0, low: 0, unrated: 0 };
+      flags.forEach((flag) => {
+        counts[normalizeRating(flag.kaggle_rating)] += 1;
+      });
+
+      overviewText.textContent =
+        `Detected ${flags.length} potential matches. High: ${counts.high}, ` +
+        `Medium: ${counts.medium}, Low: ${counts.low}.`;
+    }
+
+    function renderFlags(flags) {
+      flagsList.innerHTML = "";
+      if (!flags || flags.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "rounded-xl border border-slate-200 bg-white/70 p-4 text-sm text-slate-600";
+        empty.textContent = "No semantic matches detected in the scanned sections.";
+        flagsList.appendChild(empty);
+        return;
+      }
+
+      flags.forEach((flag) => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "rounded-xl border border-slate-200 bg-white/80 p-4 shadow-sm";
+
+        const header = document.createElement("div");
+        header.className = "flex items-center justify-between gap-3";
+
+        const title = document.createElement("h3");
+        title.className = "text-sm font-semibold text-slate-900";
+        title.textContent = flag.kaggle_title || "Matched Flag";
+
+        const badge = document.createElement("span");
+        const ratingKey = normalizeRating(flag.kaggle_rating);
+        badge.className = `rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide ${
+          ratingStyles[ratingKey] || "border-slate-200 bg-slate-50 text-slate-700"
+        }`;
+        badge.textContent = flag.kaggle_rating || "Unrated";
+
+        header.appendChild(title);
+        header.appendChild(badge);
+
+        const snippet = document.createElement("p");
+        snippet.className = "mt-3 text-sm text-slate-600";
+        snippet.textContent = `\"${flag.user_sentence}\"`;
+
+        const explanation = document.createElement("p");
+        explanation.className = "mt-2 text-sm font-medium text-slate-800";
+        explanation.textContent = flag.kaggle_explanation;
+
+        wrapper.appendChild(header);
+        wrapper.appendChild(snippet);
+        wrapper.appendChild(explanation);
+        flagsList.appendChild(wrapper);
+      });
+    }
+
+    scanBtn.addEventListener("click", async () => {
+      clearError();
+      const text = tosInput.value.trim();
+      if (!text) {
+        showError("Please paste a Terms of Service document before scanning.");
+        return;
+      }
+
+      setLoading(true);
+      try {
+        const response = await fetch("/analyze", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text }),
+        });
+
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(data.detail || "Scan failed. Please try again.");
+        }
+
+        riskScore.textContent = data.risk_score ?? "--";
+        const flags = data.found_flags || [];
+        renderOverview(flags);
+        renderFlags(flags);
+      } catch (error) {
+        showError(error.message || "Scan failed.");
+      } finally {
+        setLoading(false);
+      }
+    });
+  </script>
+</body>
+</html>
