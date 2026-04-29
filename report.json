@@ -1,0 +1,1497 @@
+[
+  {
+    "file": "Twitter_TermsofService.txt",
+    "elapsed_s": 6.94,
+    "summary": "[LLM unavailable: Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible. https://ollama.com/download]",
+    "flags": [
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "Any use or reliance on any Content or materials posted via the Services or obtained by you through the Services is at your own risk.",
+        "description": "any use or reliance on any content or materials posted via the services or obtained by you through the services is at your own risk ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "In all such cases, the Terms shall terminate, including, without limitation, your license to use the Services, except that the following sections shall continue to apply: II, III, V, and VI.",
+        "description": "in all such cases , the terms shall terminate , including , without limitation , your license to use the services , except that the following sections shall continue to apply : ii , iii , v , and vi ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "In the event that any provision of these Terms is held to be invalid or unenforceable, then that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions of these Terms will remain in full force and effect.",
+        "description": "in the event that any provision of these terms is held to be invalid or unenforceable , then that provision will be limited or eliminated to the minimum extent necessary , and the remaining provisions of these terms will remain in full force and effect ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "Any use or reliance on any Content or materials posted via the Services or obtained by you through the Services is at your own risk.",
+        "description": "any use or reliance on any content or materials posted via the services or obtained by you through the services is at your own risk ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "In all such cases, the Terms shall terminate, including, without limitation, your license to use the Services, except that the following sections shall continue to apply: II, III, V, and VI.",
+        "description": "in all such cases , the terms shall terminate , including , without limitation , your license to use the services , except that the following sections shall continue to apply : ii , iii , v , and vi ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "As such, the Services may change from time to time, at our discretion.",
+        "description": "as such , the services may change from time to time , at our discretion ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "You are responsible for safeguarding your account, so use a strong password and limit its use to this account.",
+        "description": "you are responsible for safeguarding your account , so use a strong password and limit its use to this account ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "You can control most communications from the Services.",
+        "description": "you can control most communications from the services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "This license has the sole purpose of enabling you to use and enjoy the benefit of the Services as provided by Twitter, in the manner permitted by these Terms.",
+        "description": "this license has the sole purpose of enabling you to use and enjoy the benefit of the services as provided by twitter , in the manner permitted by these terms ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "Any feedback, comments, or suggestions you may provide regarding Twitter, or the Services is entirely voluntary and we will be free to use such feedback, comments or suggestions as we see fit and without any obligation to you.",
+        "description": "any feedback , comments , or suggestions you may provide regarding twitter , or the services is entirely voluntary and we will be free to use such feedback , comments or suggestions as we see fit and without any obligation to you ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "No advice or information, whether oral or written, obtained from the Twitter Entities or through the Services, will create any warranty or representation not expressly made herein.",
+        "description": "no advice or information , whether oral or written , obtained from the twitter entities or through the services , will create any warranty or representation not expressly made herein ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "The changes will not be retroactive, and the most current version of the Terms, which will always be at twitter.com/tos, will govern our relationship with you.",
+        "description": "the changes will not be retroactive , and the most current version of the terms , which will always be at twitter.com/tos , will govern our relationship with you ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "As such, the Services may change from time to time, at our discretion.",
+        "description": "as such , the services may change from time to time , at our discretion ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "Any feedback, comments, or suggestions you may provide regarding Twitter, or the Services is entirely voluntary and we will be free to use such feedback, comments or suggestions as we see fit and without any obligation to you.",
+        "description": "any feedback , comments , or suggestions you may provide regarding twitter , or the services is entirely voluntary and we will be free to use such feedback , comments or suggestions as we see fit and without any obligation to you ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "The changes will not be retroactive, and the most current version of the Terms, which will always be at twitter.com/tos, will govern our relationship with you.",
+        "description": "the changes will not be retroactive , and the most current version of the terms , which will always be at twitter.com/tos , will govern our relationship with you ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "In the event that any provision of these Terms is held to be invalid or unenforceable, then that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions of these Terms will remain in full force and effect.",
+        "description": "in the event that any provision of these terms is held to be invalid or unenforceable , then that provision will be limited or eliminated to the minimum extent necessary , and the remaining provisions of these terms will remain in full force and effect ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "We do not endorse, support, represent or guarantee the completeness, truthfulness, accuracy, or reliability of any Content or communications posted via the Services or endorse any opinions expressed via the Services.",
+        "description": "we do not endorse , support , represent or guarantee the completeness , truthfulness , accuracy , or reliability of any content or communications posted via the services or endorse any opinions expressed via the services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "You understand that by using the Services, you may be exposed to Content that might be offensive, harmful, inaccurate or otherwise inappropriate, or in some cases, postings that have been mislabeled or are otherwise deceptive.",
+        "description": "you understand that by using the services , you may be exposed to content that might be offensive , harmful , inaccurate or otherwise inappropriate , or in some cases , postings that have been mislabeled or are otherwise deceptive ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "Twitter has an evolving set of rules for how ecosystem partners can interact with your Content on the Services.",
+        "description": "twitter has an evolving set of rules for how ecosystem partners can interact with your content on the services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "You understand that we may modify or adapt your Content as it is distributed, syndicated, published, or broadcast by us and our partners and/or make changes to your Content in order to adapt the Content to different media.",
+        "description": "you understand that we may modify or adapt your content as it is distributed , syndicated , published , or broadcast by us and our partners and/or make changes to your content in order to adapt the content to different media ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "Without limiting the foregoing, to the maximum extent permitted under applicable law, THE TWITTER ENTITIES DISCLAIM ALL WARRANTIES AND CONDITIONS, WHETHER EXPRESS OR IMPLIED, OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.",
+        "description": "without limiting the foregoing , to the maximum extent permitted under applicable law , the twitter entities disclaim all warranties and conditions , whether express or implied , of merchantability , fitness for a particular purpose , or non-infringement ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "If you have any questions about these Terms, please contact us.",
+        "description": "if you have any questions about these terms , please contact us ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "We do not endorse, support, represent or guarantee the completeness, truthfulness, accuracy, or reliability of any Content or communications posted via the Services or endorse any opinions expressed via the Services.",
+        "description": "we do not endorse , support , represent or guarantee the completeness , truthfulness , accuracy , or reliability of any content or communications posted via the services or endorse any opinions expressed via the services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "You understand that by using the Services, you may be exposed to Content that might be offensive, harmful, inaccurate or otherwise inappropriate, or in some cases, postings that have been mislabeled or are otherwise deceptive.",
+        "description": "you understand that by using the services , you may be exposed to content that might be offensive , harmful , inaccurate or otherwise inappropriate , or in some cases , postings that have been mislabeled or are otherwise deceptive ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "This license has the sole purpose of enabling you to use and enjoy the benefit of the Services as provided by Twitter, in the manner permitted by these Terms.",
+        "description": "this license has the sole purpose of enabling you to use and enjoy the benefit of the services as provided by twitter , in the manner permitted by these terms ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "If you have any questions about these Terms, please contact us.",
+        "description": "if you have any questions about these terms , please contact us ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "By using the Services you agree to be bound by these Terms.",
+        "description": "by using the services you agree to be bound by these terms ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "All Content is the sole responsibility of the person who originated such Content.",
+        "description": "all content is the sole responsibility of the person who originated such content ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "These rules exist to enable an open ecosystem with your rights in mind.",
+        "description": "these rules exist to enable an open ecosystem with your rights in mind ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "You may use the Services only in compliance with these Terms and all applicable laws, rules and regulations.",
+        "description": "you may use the services only in compliance with these terms and all applicable laws , rules and regulations ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "We also retain the right to create limits on use and storage at our sole discretion at any time.",
+        "description": "we also retain the right to create limits on use and storage at our sole discretion at any time ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "We may need to provide you with certain communications, such as service announcements and administrative messages.",
+        "description": "we may need to provide you with certain communications , such as service announcements and administrative messages ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "These communications are considered part of the Services and your account, and you may not be able to opt-out from receiving them.",
+        "description": "these communications are considered part of the services and your account , and you may not be able to opt-out from receiving them ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "If you added your phone number to your account and you later change or deactivate that phone number, you must update your account information to help prevent us from communicating with anyone who acquires your old number.",
+        "description": "if you added your phone number to your account and you later change or deactivate that phone number , you must update your account information to help prevent us from communicating with anyone who acquires your old number ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "We will make reasonable efforts to notify you by the email address associated with your account or the next time you attempt to access your account, depending on the circumstances.",
+        "description": "we will make reasonable efforts to notify you by the email address associated with your account or the next time you attempt to access your account , depending on the circumstances ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "By continuing to access or use the Services after those revisions become effective, you agree to be bound by the revised Terms.",
+        "description": "by continuing to access or use the services after those revisions become effective , you agree to be bound by the revised terms ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "All Content is the sole responsibility of the person who originated such Content.",
+        "description": "all content is the sole responsibility of the person who originated such content ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "Twitter has an evolving set of rules for how ecosystem partners can interact with your Content on the Services.",
+        "description": "twitter has an evolving set of rules for how ecosystem partners can interact with your content on the services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "These rules exist to enable an open ecosystem with your rights in mind.",
+        "description": "these rules exist to enable an open ecosystem with your rights in mind ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "You understand that we may modify or adapt your Content as it is distributed, syndicated, published, or broadcast by us and our partners and/or make changes to your Content in order to adapt the Content to different media.",
+        "description": "you understand that we may modify or adapt your content as it is distributed , syndicated , published , or broadcast by us and our partners and/or make changes to your content in order to adapt the content to different media ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "You may use the Services only in compliance with these Terms and all applicable laws, rules and regulations.",
+        "description": "you may use the services only in compliance with these terms and all applicable laws , rules and regulations ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "You are responsible for safeguarding your account, so use a strong password and limit its use to this account.",
+        "description": "you are responsible for safeguarding your account , so use a strong password and limit its use to this account ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "You can control most communications from the Services.",
+        "description": "you can control most communications from the services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "We may need to provide you with certain communications, such as service announcements and administrative messages.",
+        "description": "we may need to provide you with certain communications , such as service announcements and administrative messages ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "These communications are considered part of the Services and your account, and you may not be able to opt-out from receiving them.",
+        "description": "these communications are considered part of the services and your account , and you may not be able to opt-out from receiving them ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "If you added your phone number to your account and you later change or deactivate that phone number, you must update your account information to help prevent us from communicating with anyone who acquires your old number.",
+        "description": "if you added your phone number to your account and you later change or deactivate that phone number , you must update your account information to help prevent us from communicating with anyone who acquires your old number ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "We will make reasonable efforts to notify you by the email address associated with your account or the next time you attempt to access your account, depending on the circumstances.",
+        "description": "we will make reasonable efforts to notify you by the email address associated with your account or the next time you attempt to access your account , depending on the circumstances ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "By continuing to access or use the Services after those revisions become effective, you agree to be bound by the revised Terms.",
+        "description": "by continuing to access or use the services after those revisions become effective , you agree to be bound by the revised terms ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "This license authorizes us to make your Content available to the rest of the world and to let others do the same.",
+        "description": "this license authorizes us to make your content available to the rest of the world and to let others do the same ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "We will try to notify you of material revisions, for example via a service notification or an email to the email associated with your account.",
+        "description": "we will try to notify you of material revisions , for example via a service notification or an email to the email associated with your account ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "This license authorizes us to make your Content available to the rest of the world and to let others do the same.",
+        "description": "this license authorizes us to make your content available to the rest of the world and to let others do the same ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "We also retain the right to create limits on use and storage at our sole discretion at any time.",
+        "description": "we also retain the right to create limits on use and storage at our sole discretion at any time ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "You should only provide Content that you are comfortable sharing with others.",
+        "description": "you should only provide content that you are comfortable sharing with others ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 1.0,
+        "paragraph": "You should only provide Content that you are comfortable sharing with others.",
+        "description": "you should only provide content that you are comfortable sharing with others ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.996,
+        "paragraph": "You agree that this license includes the right for Twitter to provide, promote, and improve the Services and to make Content submitted to or through the Services available to other companies, organizations or individuals for the syndication, broadcast, distribution, Retweet, promotion or publication of such Content on other media and services, subject to our terms and conditions for such Content use.",
+        "description": "you agree that this license includes the right for twitter to provide , promote , and improve the services and to make content submitted to or through the services available to other companies , organizations or individuals for the syndication , broadcast , distribution , promotion or publication of such content on other media and services , subject to our terms and conditions for such content use ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.996,
+        "paragraph": "You agree that this license includes the right for Twitter to provide, promote, and improve the Services and to make Content submitted to or through the Services available to other companies, organizations or individuals for the syndication, broadcast, distribution, Retweet, promotion or publication of such Content on other media and services, subject to our terms and conditions for such Content use.",
+        "description": "you agree that this license includes the right for twitter to provide , promote , and improve the services and to make content submitted to or through the services available to other companies , organizations or individuals for the syndication , broadcast , distribution , promotion or publication of such content on other media and services , subject to our terms and conditions for such content use ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9936,
+        "paragraph": "We may not monitor or control the Content posted via the Services and, we cannot take responsibility for such Content.",
+        "description": "we may not monitor or control the content posted via the services and , we can not take responsibility for such content ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9936,
+        "paragraph": "We may not monitor or control the Content posted via the Services and, we cannot take responsibility for such Content.",
+        "description": "we may not monitor or control the content posted via the services and , we can not take responsibility for such content ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9935,
+        "paragraph": "Nothing in the Terms gives you a right to use the Twitter name or any of the Twitter trademarks, logos, domain names, other distinctive brand features, and other proprietary rights.",
+        "description": "nothing in the terms gives you a right to use the twitter name or any of the twitter trademarks , logos , domain names , and other distinctive brand features ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9935,
+        "paragraph": "Nothing in the Terms gives you a right to use the Twitter name or any of the Twitter trademarks, logos, domain names, other distinctive brand features, and other proprietary rights.",
+        "description": "nothing in the terms gives you a right to use the twitter name or any of the twitter trademarks , logos , domain names , and other distinctive brand features ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.989,
+        "paragraph": "The Services are protected by copyright, trademark, and other laws of both the United States and other countries.",
+        "description": "the services are protected by copyright , trademark , and other laws of both the united states and foreign countries ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.989,
+        "paragraph": "The Services are protected by copyright, trademark, and other laws of both the United States and other countries.",
+        "description": "the services are protected by copyright , trademark , and other laws of both the united states and foreign countries ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.987,
+        "paragraph": "If you want to reproduce, modify, create derivative works, distribute, sell, transfer, publicly display, publicly perform, transmit, or otherwise use the Services or Content on the Services, you must use the interfaces and instructions we provide, except as permitted through the Twitter Services, these Terms, or the terms provided on https://developer.twitter.com/en/developer-terms.",
+        "description": "if you want to reproduce , modify , create derivative works , distribute , sell , transfer , publicly display , publicly perform , transmit , or otherwise use the services or content on the services , you must use the interfaces and instructions we provide , except as permitted through the twitter services , these terms , or the terms provided on dev.twitter.com ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.987,
+        "paragraph": "If you want to reproduce, modify, create derivative works, distribute, sell, transfer, publicly display, publicly perform, transmit, or otherwise use the Services or Content on the Services, you must use the interfaces and instructions we provide, except as permitted through the Twitter Services, these Terms, or the terms provided on https://developer.twitter.com/en/developer-terms.",
+        "description": "if you want to reproduce , modify , create derivative works , distribute , sell , transfer , publicly display , publicly perform , transmit , or otherwise use the services or content on the services , you must use the interfaces and instructions we provide , except as permitted through the twitter services , these terms , or the terms provided on dev.twitter.com ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9859,
+        "paragraph": "Twitterâs failure to enforce any right or provision of these Terms will not be deemed a waiver of such right or provision.",
+        "description": "twitter 's failure to enforce any right or provision of these terms will not be deemed a waiver of such right or provision ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9859,
+        "paragraph": "Twitterâs failure to enforce any right or provision of these Terms will not be deemed a waiver of such right or provision.",
+        "description": "twitter 's failure to enforce any right or provision of these terms will not be deemed a waiver of such right or provision ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9732,
+        "paragraph": "We cannot and will not be liable for any loss or damage arising from your failure to comply with the above.",
+        "description": "we can not and will not be liable for any loss or damage arising from your failure to comply with the above ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9732,
+        "paragraph": "We cannot and will not be liable for any loss or damage arising from your failure to comply with the above.",
+        "description": "we can not and will not be liable for any loss or damage arising from your failure to comply with the above ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9719,
+        "paragraph": "Your Account You may need to create an account to use some of our Services.",
+        "description": "you may need to create an account to use some of our services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9719,
+        "paragraph": "Your Account You may need to create an account to use some of our Services.",
+        "description": "you may need to create an account to use some of our services ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9716,
+        "paragraph": "We may also remove or refuse to distribute any Content on the Services, limit distribution or visibility of any Content on the service, suspend or terminate users, and reclaim usernames without liability to you.",
+        "description": "we may also remove or refuse to distribute any content on the services , suspend or terminate users , and reclaim usernames without liability to you ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9716,
+        "paragraph": "We may also remove or refuse to distribute any Content on the Services, limit distribution or visibility of any Content on the service, suspend or terminate users, and reclaim usernames without liability to you.",
+        "description": "we may also remove or refuse to distribute any content on the services , suspend or terminate users , and reclaim usernames without liability to you ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9637,
+        "paragraph": "Who May Use the Services You may use the Services only if you agree to form a binding contract with Twitter and are not a person barred from receiving services under the laws of the applicable jurisdiction.",
+        "description": "you may use the services only if you agree to form a binding contract with twitter and are not a person barred from receiving services under the laws of the applicable jurisdiction ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9637,
+        "paragraph": "Who May Use the Services You may use the Services only if you agree to form a binding contract with Twitter and are not a person barred from receiving services under the laws of the applicable jurisdiction.",
+        "description": "you may use the services only if you agree to form a binding contract with twitter and are not a person barred from receiving services under the laws of the applicable jurisdiction ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9625,
+        "paragraph": "THE LIMITATIONS OF THIS SUBSECTION SHALL APPLY TO ANY THEORY OF LIABILITY, WHETHER BASED ON WARRANTY, CONTRACT, STATUTE, TORT (INCLUDING NEGLIGENCE) OR OTHERWISE, AND WHETHER OR NOT THE TWITTER ENTITIES HAVE BEEN INFORMED OF THE POSSIBILITY OF ANY SUCH DAMAGE, AND EVEN IF A REMEDY SET FORTH HEREIN IS FOUND TO HAVE FAILED OF ITS ESSENTIAL PURPOSE.",
+        "description": "the limitations of this subsection shall apply to any theory of liability , whether based on warranty , contract , statute , tort -lrb- including negligence -rrb- or otherwise , and whether or not the twitter entities have been informed of the possibility of any such damage , and even if a remedy set forth herein is found to have failed of its essential purpose ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9614,
+        "paragraph": "Such additional uses by Twitter, or other companies, organizations or individuals, is made with no compensation paid to you with respect to the Content that you submit, post, transmit or otherwise make available through the Services as the use of the Services by you is hereby agreed as being sufficient compensation for the Content and grant of rights herein.",
+        "description": "such additional uses by twitter , or other companies , organizations or individuals , may be made with no compensation paid to you with respect to the content that you submit , post , transmit or otherwise make available through the services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9614,
+        "paragraph": "Such additional uses by Twitter, or other companies, organizations or individuals, is made with no compensation paid to you with respect to the Content that you submit, post, transmit or otherwise make available through the Services as the use of the Services by you is hereby agreed as being sufficient compensation for the Content and grant of rights herein.",
+        "description": "such additional uses by twitter , or other companies , organizations or individuals , may be made with no compensation paid to you with respect to the content that you submit , post , transmit or otherwise make available through the services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9591,
+        "paragraph": "Ending These Terms You may end your legal agreement with Twitter at any time by deactivating your accounts and discontinuing your use of the Services.",
+        "description": "you may end your legal agreement with twitter at any time by deactivating your accounts and discontinuing your use of the services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9591,
+        "paragraph": "Ending These Terms You may end your legal agreement with Twitter at any time by deactivating your accounts and discontinuing your use of the Services.",
+        "description": "you may end your legal agreement with twitter at any time by deactivating your accounts and discontinuing your use of the services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9444,
+        "paragraph": "Content on the Services You are responsible for your use of the Services and for any Content you provide, including compliance with applicable laws, rules, and regulations.",
+        "description": "you are responsible for your use of the services and for any content you provide , including compliance with applicable laws , rules , and regulations ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9444,
+        "paragraph": "Content on the Services You are responsible for your use of the Services and for any Content you provide, including compliance with applicable laws, rules, and regulations.",
+        "description": "you are responsible for your use of the services and for any content you provide , including compliance with applicable laws , rules , and regulations ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9394,
+        "paragraph": "If you believe that your Content has been copied in a way that constitutes copyright infringement, please report this by visiting our Copyright reporting form (https://help.twitter.com/forms/dmca) or contacting our designated copyright agent at:\nTwitter, Inc.",
+        "description": "if you believe that your content has been copied in a way that constitutes copyright infringement , please report this by visiting our copyright reporting form -lrb- https://support.twitter.com/forms/dmca -rrb- or contacting our designated copyright agent at :"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9394,
+        "paragraph": "If you believe that your Content has been copied in a way that constitutes copyright infringement, please report this by visiting our Copyright reporting form (https://help.twitter.com/forms/dmca) or contacting our designated copyright agent at:\nTwitter, Inc.",
+        "description": "if you believe that your content has been copied in a way that constitutes copyright infringement , please report this by visiting our copyright reporting form -lrb- https://support.twitter.com/forms/dmca -rrb- or contacting our designated copyright agent at :"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9264,
+        "paragraph": "Your License to Use the Services Twitter gives you a personal, worldwide, royalty-free, non-assignable and non-exclusive license to use the software provided to you as part of the Services.",
+        "description": "twitter gives you a personal , worldwide , royalty-free , non-assignable and non-exclusive license to use the software provided to you as part of the services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9264,
+        "paragraph": "Your License to Use the Services Twitter gives you a personal, worldwide, royalty-free, non-assignable and non-exclusive license to use the software provided to you as part of the Services.",
+        "description": "twitter gives you a personal , worldwide , royalty-free , non-assignable and non-exclusive license to use the software provided to you as part of the services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.926,
+        "paragraph": "(iv) forge any TCP/IP packet header or any part of the header information in any email or posting, or in any way use the Services to send altered, deceptive or false source-identifying information.",
+        "description": "forge any tcp/ip packet header or any part of the header information in any email or newsgroup posting , or in any way use the services or content to send altered , deceptive , or false source-identifying information ;"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.926,
+        "paragraph": "(iv) forge any TCP/IP packet header or any part of the header information in any email or posting, or in any way use the Services to send altered, deceptive or false source-identifying information.",
+        "description": "forge any tcp/ip packet header or any part of the header information in any email or newsgroup posting , or in any way use the services or content to send altered , deceptive , or false source-identifying information ;"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9073,
+        "paragraph": "See https://help.twitter.com/en/managing-your-account/how-to-deactivate-twitter-account (and for Periscope, https://help.pscp.tv/customer/portal/articles/2460220) for instructions on how to deactivate your account and the Privacy Policy for more information on what happens to your information.",
+        "description": "see http://support.twitter.com/articles/15358-how-to-deactivate-your-account for instructions on how to deactivate your account and the privacy policy for more information on what happens to your information ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9073,
+        "paragraph": "See https://help.twitter.com/en/managing-your-account/how-to-deactivate-twitter-account (and for Periscope, https://help.pscp.tv/customer/portal/articles/2460220) for instructions on how to deactivate your account and the Privacy Policy for more information on what happens to your information.",
+        "description": "see http://support.twitter.com/articles/15358-how-to-deactivate-your-account for instructions on how to deactivate your account and the privacy policy for more information on what happens to your information ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9033,
+        "paragraph": "General We may revise these Terms from time to time.",
+        "description": "we may revise these terms from time to time ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.9033,
+        "paragraph": "General We may revise these Terms from time to time.",
+        "description": "we may revise these terms from time to time ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8931,
+        "paragraph": "Effective: June 18, 2020",
+        "description": "effective : july 31 , 2017"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.888,
+        "paragraph": "You represent and warrant that you have, or have obtained, all rights, licenses, consents, permissions, power and/or authority necessary to grant the rights granted herein for any Content that you submit, post or display on or through the Services.",
+        "description": "you represent and warrant that you have all the rights , power and authority necessary to grant the rights granted herein to any content that you submit ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.888,
+        "paragraph": "You represent and warrant that you have, or have obtained, all rights, licenses, consents, permissions, power and/or authority necessary to grant the rights granted herein for any Content that you submit, post or display on or through the Services.",
+        "description": "you represent and warrant that you have all the rights , power and authority necessary to grant the rights granted herein to any content that you submit ."
+      },
+      {
+        "severity": "Medium",
+        "category": "Transparency",
+        "source": "tosdr",
+        "score": 0.8726,
+        "paragraph": "Your Account You may need to create an account to use some of our Services.",
+        "description": "You must provide the service with your information in order to use it"
+      },
+      {
+        "severity": "Medium",
+        "category": "Transparency",
+        "source": "tosdr",
+        "score": 0.8726,
+        "paragraph": "Your Account You may need to create an account to use some of our Services.",
+        "description": "You must provide the service with your information in order to use it"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8599,
+        "paragraph": "Disclaimers and Limitations of Liability \n 6.",
+        "description": "disclaimers ; limitation of liability ; indemnity ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8599,
+        "paragraph": "Disclaimers and Limitations of Liability \n 6.",
+        "description": "disclaimers ; limitation of liability ; indemnity ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8469,
+        "paragraph": "(ii) probe, scan, or test the vulnerability of any system or network or breach or circumvent any security or authentication measures.",
+        "description": "probe , scan or test the vulnerability of our services or any system or network ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8469,
+        "paragraph": "(ii) probe, scan, or test the vulnerability of any system or network or breach or circumvent any security or authentication measures.",
+        "description": "probe , scan or test the vulnerability of our services or any system or network ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8425,
+        "paragraph": "(iii) the deletion of, or the failure to store or to transmit, any Content and other communications maintained by the Services.",
+        "description": "the deletion of , corruption of , or failure to store , any content and other communications data maintained or transmitted by or through your use of the service ; iv ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.841,
+        "paragraph": "The Twitter Entities make no warranty or representation and disclaim all responsibility and liability for: (i) the completeness, accuracy, availability, timeliness, security or reliability of the Services or any Content.",
+        "description": "without limiting the foregoing , to the maximum extent permitted under applicable law , the twitter entities disclaim all warranties and conditions , whether express or implied , of merchantability , fitness for a particular purpose , or non-infringement ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8352,
+        "paragraph": "Disclaimers and Limitations of Liability The Services are Available \"AS-IS\" Your access to and use of the Services or any Content are at your own risk.",
+        "description": "you use our services at your own risk and subject to the following disclaimers ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8286,
+        "paragraph": "We may suspend or terminate your account or cease providing you with all or part of the Services at any time for any or no reason, including, but not limited to, if we reasonably believe: (i) you have violated these Terms or the Twitter Rules and Policies or Periscope Community Guidelines, (ii) you create risk or possible legal exposure for us.",
+        "description": "we may suspend , or terminate your access to or use of our services anytime for any reason , such as if you violate the letter or spirit of our terms and polices , or create harm , risk , or possible legal exposure for us , our users , or others ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8286,
+        "paragraph": "We may suspend or terminate your account or cease providing you with all or part of the Services at any time for any or no reason, including, but not limited to, if we reasonably believe: (i) you have violated these Terms or the Twitter Rules and Policies or Periscope Community Guidelines, (ii) you create risk or possible legal exposure for us.",
+        "description": "we may suspend , or terminate your access to or use of our services anytime for any reason , such as if you violate the letter or spirit of our terms and polices , or create harm , risk , or possible legal exposure for us , our users , or others ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.82,
+        "paragraph": "We reserve the right to remove Content that violates the User Agreement, including for example, copyright or trademark violations or other intellectual property misappropriation, impersonation, unlawful conduct, or harassment.",
+        "description": "we reserve the right to remove content alleged to be infringing without prior notice , at our sole discretion , and without liability to you ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.82,
+        "paragraph": "We reserve the right to remove Content that violates the User Agreement, including for example, copyright or trademark violations or other intellectual property misappropriation, impersonation, unlawful conduct, or harassment.",
+        "description": "we reserve the right to remove content alleged to be infringing without prior notice , at our sole discretion , and without liability to you ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8135,
+        "paragraph": "You also agree not to misuse our Services, for example, by interfering with them or accessing them using a method other than the interface and the instructions that we provide.",
+        "description": "for example , do n't interfere with our services or try to access them using a method other than the interface and the instructions that we provide ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8135,
+        "paragraph": "You also agree not to misuse our Services, for example, by interfering with them or accessing them using a method other than the interface and the instructions that we provide.",
+        "description": "for example , do n't interfere with our services or try to access them using a method other than the interface and the instructions that we provide ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8093,
+        "paragraph": "You agree that such Content will not contain material subject to copyright or other proprietary rights, unless you have necessary permission or are otherwise legally entitled to post the material and to grant Twitter the license described above.",
+        "description": "you agree that this license includes the right for twitter to provide , promote , and improve the services and to make content submitted to or through the services available to other companies , organizations or individuals for the syndication , broadcast , distribution , promotion or publication of such content on other media and services , subject to our terms and conditions for such content use ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8093,
+        "paragraph": "You agree that such Content will not contain material subject to copyright or other proprietary rights, unless you have necessary permission or are otherwise legally entitled to post the material and to grant Twitter the license described above.",
+        "description": "you agree that this license includes the right for twitter to provide , promote , and improve the services and to make content submitted to or through the services available to other companies , organizations or individuals for the syndication , broadcast , distribution , promotion or publication of such content on other media and services , subject to our terms and conditions for such content use ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8069,
+        "paragraph": "You understand that through your use of the Services you consent to the collection and use (as set forth in the Privacy Policy) of this information, including the transfer of this information to the United States, Ireland, and/or other countries for storage, processing and use by Twitter and its affiliates.",
+        "description": "you understand that through your use of the services you consent to the collection and use -lrb- as set forth in the privacy policy -rrb- of this information , including the transfer of this information to the united states , ireland , and/or other countries for storage , processing and use by twitter and its affiliates ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8069,
+        "paragraph": "You understand that through your use of the Services you consent to the collection and use (as set forth in the Privacy Policy) of this information, including the transfer of this information to the United States, Ireland, and/or other countries for storage, processing and use by Twitter and its affiliates.",
+        "description": "you understand that through your use of the services you consent to the collection and use -lrb- as set forth in the privacy policy -rrb- of this information , including the transfer of this information to the united states , ireland , and/or other countries for storage , processing and use by twitter and its affiliates ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8039,
+        "paragraph": "Limitation of Liability TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE TWITTER ENTITIES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM (i) YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE SERVICES.",
+        "description": "the limitations of this subsection shall apply to any theory of liability , whether based on warranty , contract , statute , tort -lrb- including negligence -rrb- or otherwise , and whether or not the twitter entities have been informed of the possibility of any such damage , and even if a remedy set forth herein is found to have failed of its essential purpose ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.801,
+        "paragraph": "federal government entities, these Terms and any action related thereto will be governed by the laws of the United States of America (without reference to conflict of laws) and, in the absence of federal law and to the extent permitted under federal law, the laws of the State of California (excluding choice of law).",
+        "description": "these terms and any action related thereto will be governed by the laws of the state of california without regard to its conflict of laws provisions ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.8008,
+        "paragraph": "Effective: June 18, 2020\nArchive of Previous Terms",
+        "description": "effective : january 10 , 2017"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7996,
+        "paragraph": "All right, title, and interest in and to the Services (excluding Content provided by users) are and will remain the exclusive property of Twitter and its licensors.",
+        "description": "all right , title , and interest in and to the services -lrb- excluding content provided by users -rrb- are and will remain the exclusive property of twitter and its licensors ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7996,
+        "paragraph": "All right, title, and interest in and to the Services (excluding Content provided by users) are and will remain the exclusive property of Twitter and its licensors.",
+        "description": "all right , title , and interest in and to the services -lrb- excluding content provided by users -rrb- are and will remain the exclusive property of twitter and its licensors ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7995,
+        "paragraph": "By submitting, posting or displaying Content on or through the Services, you grant us a worldwide, non-exclusive, royalty-free license (with the right to sublicense) to use, copy, reproduce, process, adapt, modify, publish, transmit, display and distribute such Content in any and all media or distribution methods now known or later developed (for clarity, these rights include, for example, curating, transforming, and translating).",
+        "description": "b. to each user of the service , a worldwide , non-exclusive , royalty-free licence to access your content through the service , and to use , reproduce , distribute , prepare derivative works of , display and perform such content to the extent permitted by the functionality of the service and under these terms ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7995,
+        "paragraph": "By submitting, posting or displaying Content on or through the Services, you grant us a worldwide, non-exclusive, royalty-free license (with the right to sublicense) to use, copy, reproduce, process, adapt, modify, publish, transmit, display and distribute such Content in any and all media or distribution methods now known or later developed (for clarity, these rights include, for example, curating, transforming, and translating).",
+        "description": "b. to each user of the service , a worldwide , non-exclusive , royalty-free licence to access your content through the service , and to use , reproduce , distribute , prepare derivative works of , display and perform such content to the extent permitted by the functionality of the service and under these terms ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.799,
+        "paragraph": "We may stop (permanently or temporarily) providing the Services or any features within the Services to you or to users generally.",
+        "description": "we may discontinue or change the service or its availability to you at any time and you may stop using the service at any time ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.799,
+        "paragraph": "We may stop (permanently or temporarily) providing the Services or any features within the Services to you or to users generally.",
+        "description": "we may discontinue or change the service or its availability to you at any time and you may stop using the service at any time ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7958,
+        "paragraph": "Using the Services Please review the Twitter Rules and Policies (and, for Periscope, the Periscope Community Guidelines at https://pscp.tv/content), which are part of the User Agreement and outline what is prohibited on the Services.",
+        "description": "please review the twitter rules , which are part of the user agreement and outline what is prohibited on the services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7935,
+        "paragraph": "or (v) interfere with, or disrupt, (or attempt to do so), the access of any user, host or network, including, without limitation, sending a virus, overloading, flooding, spamming, mail-bombing the Services, or by scripting the creation of Content in such a manner as to interfere with or create an undue burden on the Services.",
+        "description": "interfere with , or attempt to interfere with , the access of any user , host , or network , including , without limitation , sending a virus , overloading , flooding , spamming , or mail-bombing the services ;"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7935,
+        "paragraph": "or (v) interfere with, or disrupt, (or attempt to do so), the access of any user, host or network, including, without limitation, sending a virus, overloading, flooding, spamming, mail-bombing the Services, or by scripting the creation of Content in such a manner as to interfere with or create an undue burden on the Services.",
+        "description": "interfere with , or attempt to interfere with , the access of any user , host , or network , including , without limitation , sending a virus , overloading , flooding , spamming , or mail-bombing the services ;"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7933,
+        "paragraph": "The âTwitter Entitiesâ refers to Twitter, its parents, affiliates, related companies, officers, directors, employees, agents, representatives, partners, and licensors.",
+        "description": "the `` twitter entities '' refers to twitter , its parents , affiliates , related companies , officers , directors , employees , agents , representatives , partners , and licensors ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7923,
+        "paragraph": "If you use advertising features of the Services, you must agree to our Twitter Master Services Agreement (https://ads.twitter.com/terms).",
+        "description": "if you use advertising features of the services , you must agree to our twitter master services agreement -lrb- https://ads.twitter.com/terms -rrb- ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7923,
+        "paragraph": "If you use advertising features of the Services, you must agree to our Twitter Master Services Agreement (https://ads.twitter.com/terms).",
+        "description": "if you use advertising features of the services , you must agree to our twitter master services agreement -lrb- https://ads.twitter.com/terms -rrb- ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7851,
+        "paragraph": "Our Services evolve constantly.",
+        "description": "we are constantly changing and improving our services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7851,
+        "paragraph": "Our Services evolve constantly.",
+        "description": "we are constantly changing and improving our services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7812,
+        "paragraph": "Using the Services Please review the Twitter Rules and Policies (and, for Periscope, the Periscope Community Guidelines at https://www.pscp.tv/content), which are part of the User Agreement and outline what is prohibited on the Services.",
+        "description": "please review the twitter rules , which are part of the user agreement and outline what is prohibited on the services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7809,
+        "paragraph": "Limitations of Liability \n 6.",
+        "description": "limitation of liability ; sole and exclusive remedy ; indemnification"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7809,
+        "paragraph": "Limitations of Liability \n 6.",
+        "description": "limitation of liability ; sole and exclusive remedy ; indemnification"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7775,
+        "paragraph": "Other than for changes addressing new functions or made for legal reasons, we will notify you 30 days in advance of making effective changes to these Terms that impact the rights or obligations of any party to these Terms, for example via a service notification or an email to the email associated with your account.",
+        "description": "if the changes include material changes that affect your rights or obligations , we will notify you in advance of the changes by reasonable means , which could include notification through the services or via email ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7763,
+        "paragraph": "We also reserve the right to access, read, preserve, and disclose any information as we reasonably believe is necessary to (i) satisfy any applicable law, regulation, legal process or governmental request, (ii) enforce the Terms, including investigation of potential violations hereof, (iii) detect, prevent, or otherwise address fraud, security or technical issues, (iv) respond to user support requests, or (v) protect the rights, property or safety of Twitter, its users and the public.",
+        "description": "we also reserve the right to establish limits to the nature or size of storage available to you , the number of transmissions , the ability to send or receive email messages , the nature or size of any index or library information , the nature of , or your continued ability to access or distribute , your content and other data , and impose other limitations at any time , with or without notice ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7763,
+        "paragraph": "We also reserve the right to access, read, preserve, and disclose any information as we reasonably believe is necessary to (i) satisfy any applicable law, regulation, legal process or governmental request, (ii) enforce the Terms, including investigation of potential violations hereof, (iii) detect, prevent, or otherwise address fraud, security or technical issues, (iv) respond to user support requests, or (v) protect the rights, property or safety of Twitter, its users and the public.",
+        "description": "we also reserve the right to establish limits to the nature or size of storage available to you , the number of transmissions , the ability to send or receive email messages , the nature or size of any index or library information , the nature of , or your continued ability to access or distribute , your content and other data , and impose other limitations at any time , with or without notice ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7653,
+        "paragraph": "Using the Services \n 5.",
+        "description": "using the services & support ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7653,
+        "paragraph": "Using the Services \n 5.",
+        "description": "using the services & support ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7653,
+        "paragraph": "Using the Services \n 5.",
+        "description": "using the services & support ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7653,
+        "paragraph": "Using the Services \n 5.",
+        "description": "using the services & support ."
+      },
+      {
+        "severity": "Low",
+        "category": "Notice of Changing Terms",
+        "source": "tosdr",
+        "score": 0.7628,
+        "paragraph": "Other than for changes addressing new functions or made for legal reasons, we will notify you 30 days in advance of making effective changes to these Terms that impact the rights or obligations of any party to these Terms, for example via a service notification or an email to the email associated with your account.",
+        "description": "The service may update the Terms without notice, but if they significantly change the agreements in a manner that importantly and/or negatively affects the way the service is used, users will be notified at least 30 days in advance."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7462,
+        "paragraph": "Whatâs yours is yours â you own your Content (and your incorporated audio, photos and videos are considered part of the Content).",
+        "description": "you own the content that you create , and we own the content that we create ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7462,
+        "paragraph": "Whatâs yours is yours â you own your Content (and your incorporated audio, photos and videos are considered part of the Content).",
+        "description": "you own the content that you create , and we own the content that we create ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7455,
+        "paragraph": "In any case, you must be at least 13 years old, or in the case of Periscope 16 years old, to use the Services.",
+        "description": "you must be aged 13 or over to use the services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7455,
+        "paragraph": "In any case, you must be at least 13 years old, or in the case of Periscope 16 years old, to use the Services.",
+        "description": "you must be aged 13 or over to use the services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7454,
+        "paragraph": "If you are accepting these Terms and using the Services on behalf of a company, organization, government, or other legal entity, you represent and warrant that you are authorized to do so and have the authority to bind such entity to these Terms, in which case the words âyouâ and âyourâ as used in these Terms shall refer to such entity.",
+        "description": "if you accept or agree to these terms on behalf of a company , university or other legal entity , you represent and warrant that you have the authority to bind that company , university or other legal entity to these terms and , in such event , `` you '' and `` your '' will refer and apply to that company or other legal entity ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7454,
+        "paragraph": "If you are accepting these Terms and using the Services on behalf of a company, organization, government, or other legal entity, you represent and warrant that you are authorized to do so and have the authority to bind such entity to these Terms, in which case the words âyouâ and âyourâ as used in these Terms shall refer to such entity.",
+        "description": "if you accept or agree to these terms on behalf of a company , university or other legal entity , you represent and warrant that you have the authority to bind that company , university or other legal entity to these terms and , in such event , `` you '' and `` your '' will refer and apply to that company or other legal entity ."
+      },
+      {
+        "severity": "High",
+        "category": "Governance",
+        "source": "tosdr",
+        "score": 0.7444,
+        "paragraph": "Disclaimers and Limitations of Liability The Services are Available \"AS-IS\" Your access to and use of the Services or any Content are at your own risk.",
+        "description": "Any liability on behalf of the service is only limited to the fees you paid as a user"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.74,
+        "paragraph": "Content on the Services \n 4.",
+        "description": "your use of the services and content"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.74,
+        "paragraph": "Content on the Services \n 4.",
+        "description": "your use of the services and content"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.74,
+        "paragraph": "Content on the Services \n 4.",
+        "description": "your use of the services and content"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.74,
+        "paragraph": "Content on the Services \n 4.",
+        "description": "your use of the services and content"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7384,
+        "paragraph": "You may not do any of the following while accessing or using the Services: (i) access, tamper with, or use non-public areas of the Services, Twitterâs computer systems, or the technical delivery systems of Twitterâs providers.",
+        "description": "you may use the services only if you agree to form a binding contract with twitter and are not a person barred from receiving services under the laws of the applicable jurisdiction ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7384,
+        "paragraph": "You may not do any of the following while accessing or using the Services: (i) access, tamper with, or use non-public areas of the Services, Twitterâs computer systems, or the technical delivery systems of Twitterâs providers.",
+        "description": "you may use the services only if you agree to form a binding contract with twitter and are not a person barred from receiving services under the laws of the applicable jurisdiction ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7382,
+        "paragraph": "Privacy Our Privacy Policy (https://www.twitter.com/privacy) describes how we handle the information you provide to us when you use our Services.",
+        "description": "our privacy policy -lrb- https://www.twitter.com/privacy -rrb- describes how we handle the information you provide to us when you use our services ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7382,
+        "paragraph": "Privacy Our Privacy Policy (https://www.twitter.com/privacy) describes how we handle the information you provide to us when you use our Services.",
+        "description": "our privacy policy -lrb- https://www.twitter.com/privacy -rrb- describes how we handle the information you provide to us when you use our services ."
+      },
+      {
+        "severity": "Medium",
+        "category": "Security",
+        "source": "tosdr",
+        "score": 0.7347,
+        "paragraph": "Your Account You may need to create an account to use some of our Services.",
+        "description": "The service asks the user to notify them immediately of any unauthorized use or security breaches."
+      },
+      {
+        "severity": "Medium",
+        "category": "Security",
+        "source": "tosdr",
+        "score": 0.7347,
+        "paragraph": "Your Account You may need to create an account to use some of our Services.",
+        "description": "The service asks the user to notify them immediately of any unauthorized use or security breaches."
+      },
+      {
+        "severity": "Medium",
+        "category": "Suspension and Censorship",
+        "source": "tosdr",
+        "score": 0.7292,
+        "paragraph": "We may suspend or terminate your account or cease providing you with all or part of the Services at any time for any or no reason, including, but not limited to, if we reasonably believe: (i) you have violated these Terms or the Twitter Rules and Policies or Periscope Community Guidelines, (ii) you create risk or possible legal exposure for us.",
+        "description": "Your account can be suspended for several reasons"
+      },
+      {
+        "severity": "Medium",
+        "category": "Suspension and Censorship",
+        "source": "tosdr",
+        "score": 0.7292,
+        "paragraph": "We may suspend or terminate your account or cease providing you with all or part of the Services at any time for any or no reason, including, but not limited to, if we reasonably believe: (i) you have violated these Terms or the Twitter Rules and Policies or Periscope Community Guidelines, (ii) you create risk or possible legal exposure for us.",
+        "description": "Your account can be suspended for several reasons"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7285,
+        "paragraph": "If you use developer features of the Services, including but not limited to Twitter for Websites (https://developer.twitter.com/docs/twitter-for-websites/overview), Twitter Cards (https://developer.twitter.com/docs/tweets/optimize-with-cards/guides/getting-started), Public API (https://developer.twitter.com/en/docs), or Sign in with Twitter (https://developer.twitter.com/docs/basics/authentication/guides/log-in-with-twitter), you agree to our Developer Agreement (https://developer.twitter.com/en/developer-terms/agreement) and Developer Policy (https://developer.twitter.com/en/developer-terms/policy).",
+        "description": "if you use developer features of the services , including but not limited to twitter for websites -lrb- https://dev.twitter.com/web/overview -rrb- , twitter cards -lrb- https://dev.twitter.com/cards/overview -rrb- , public api -lrb- https://dev.twitter.com/streaming/public -rrb- , or sign in with twitter -lrb- https://dev.twitter.com/web/sign-in -rrb- , you agree to our developer agreement -lrb- https://dev.twitter.com/overview/terms/agreement -rrb- and developer policy -lrb- https://dev.twitter.com/overview/terms/policy -rrb- ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7285,
+        "paragraph": "If you use developer features of the Services, including but not limited to Twitter for Websites (https://developer.twitter.com/docs/twitter-for-websites/overview), Twitter Cards (https://developer.twitter.com/docs/tweets/optimize-with-cards/guides/getting-started), Public API (https://developer.twitter.com/en/docs), or Sign in with Twitter (https://developer.twitter.com/docs/basics/authentication/guides/log-in-with-twitter), you agree to our Developer Agreement (https://developer.twitter.com/en/developer-terms/agreement) and Developer Policy (https://developer.twitter.com/en/developer-terms/policy).",
+        "description": "if you use developer features of the services , including but not limited to twitter for websites -lrb- https://dev.twitter.com/web/overview -rrb- , twitter cards -lrb- https://dev.twitter.com/cards/overview -rrb- , public api -lrb- https://dev.twitter.com/streaming/public -rrb- , or sign in with twitter -lrb- https://dev.twitter.com/web/sign-in -rrb- , you agree to our developer agreement -lrb- https://dev.twitter.com/overview/terms/agreement -rrb- and developer policy -lrb- https://dev.twitter.com/overview/terms/policy -rrb- ."
+      },
+      {
+        "severity": "High",
+        "category": "Copyright License",
+        "source": "tosdr",
+        "score": 0.727,
+        "paragraph": "This license authorizes us to make your Content available to the rest of the world and to let others do the same.",
+        "description": "By posting content through the Services, users grant them a transferable and/or sublicensable right, which allows user content to be licensed to third parties."
+      },
+      {
+        "severity": "High",
+        "category": "Copyright License",
+        "source": "tosdr",
+        "score": 0.727,
+        "paragraph": "This license authorizes us to make your Content available to the rest of the world and to let others do the same.",
+        "description": "By posting content through the Services, users grant them a transferable and/or sublicensable right, which allows user content to be licensed to third parties."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7256,
+        "paragraph": "Limitations of Liability By using the Services you agree that Twitter, its parents, affiliates, related companies, officers, directors, employees, agents representatives, partners and licensors, liability is limited to the maximum extent permissible in your country of residence.",
+        "description": "the limitations of this subsection shall apply to any theory of liability , whether based on warranty , contract , statute , tort -lrb- including negligence -rrb- or otherwise , and whether or not the twitter entities have been informed of the possibility of any such damage , and even if a remedy set forth herein is found to have failed of its essential purpose ."
+      },
+      {
+        "severity": "Medium",
+        "category": "Suspension and Censorship",
+        "source": "tosdr",
+        "score": 0.7213,
+        "paragraph": "We may stop (permanently or temporarily) providing the Services or any features within the Services to you or to users generally.",
+        "description": "They may discontinue the services without prior notice, at any time, for any or no reason. They usually assume no liability for losses and damages resulting from this suspension."
+      },
+      {
+        "severity": "Medium",
+        "category": "Suspension and Censorship",
+        "source": "tosdr",
+        "score": 0.7213,
+        "paragraph": "We may stop (permanently or temporarily) providing the Services or any features within the Services to you or to users generally.",
+        "description": "They may discontinue the services without prior notice, at any time, for any or no reason. They usually assume no liability for losses and damages resulting from this suspension."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7196,
+        "paragraph": "For the avoidance of doubt, these Terms survive the deactivation or termination of your account.",
+        "description": "your paid account will remain in effect until it 's cancelled or terminated under these terms ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7196,
+        "paragraph": "For the avoidance of doubt, these Terms survive the deactivation or termination of your account.",
+        "description": "your paid account will remain in effect until it 's cancelled or terminated under these terms ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7156,
+        "paragraph": "In consideration for Twitter granting you access to and use of the Services, you agree that Twitter and its third-party providers and partners may place advertising on the Services or in connection with the display of Content or information from the Services whether submitted by you or others.",
+        "description": "our services may link to , interact with or be available on third-party services or products such as social media providers and third-party devices ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7156,
+        "paragraph": "In consideration for Twitter granting you access to and use of the Services, you agree that Twitter and its third-party providers and partners may place advertising on the Services or in connection with the display of Content or information from the Services whether submitted by you or others.",
+        "description": "our services may link to , interact with or be available on third-party services or products such as social media providers and third-party devices ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7098,
+        "paragraph": "(iii) ANY CONTENT OBTAINED FROM THE SERVICES.",
+        "description": "the services and the content are provided to you strictly on an `` as is '' basis ."
+      },
+      {
+        "severity": "Medium",
+        "category": "Copyright License",
+        "source": "tosdr",
+        "score": 0.7069,
+        "paragraph": "The Services are protected by copyright, trademark, and other laws of both the United States and other countries.",
+        "description": "The copyright license that you grant this service is limited to the parties that make up the service's broader platform."
+      },
+      {
+        "severity": "Medium",
+        "category": "Copyright License",
+        "source": "tosdr",
+        "score": 0.7069,
+        "paragraph": "The Services are protected by copyright, trademark, and other laws of both the United States and other countries.",
+        "description": "The copyright license that you grant this service is limited to the parties that make up the service's broader platform."
+      },
+      {
+        "severity": "Low",
+        "category": "Ownership",
+        "source": "tosdr",
+        "score": 0.7046,
+        "paragraph": "Whatâs yours is yours â you own your Content (and your incorporated audio, photos and videos are considered part of the Content).",
+        "description": "This service does not claim ownership over user-generated content or materials, and the user doesn't need to waive any moral rights by posting owned content."
+      },
+      {
+        "severity": "Low",
+        "category": "Ownership",
+        "source": "tosdr",
+        "score": 0.7046,
+        "paragraph": "Whatâs yours is yours â you own your Content (and your incorporated audio, photos and videos are considered part of the Content).",
+        "description": "This service does not claim ownership over user-generated content or materials, and the user doesn't need to waive any moral rights by posting owned content."
+      },
+      {
+        "severity": "High",
+        "category": "Copyright License",
+        "source": "tosdr",
+        "score": 0.7036,
+        "paragraph": "By submitting, posting or displaying Content on or through the Services, you grant us a worldwide, non-exclusive, royalty-free license (with the right to sublicense) to use, copy, reproduce, process, adapt, modify, publish, transmit, display and distribute such Content in any and all media or distribution methods now known or later developed (for clarity, these rights include, for example, curating, transforming, and translating).",
+        "description": "By posting content through the Services, users grant them a transferable and/or sublicensable right, which allows user content to be licensed to third parties."
+      },
+      {
+        "severity": "High",
+        "category": "Copyright License",
+        "source": "tosdr",
+        "score": 0.7036,
+        "paragraph": "By submitting, posting or displaying Content on or through the Services, you grant us a worldwide, non-exclusive, royalty-free license (with the right to sublicense) to use, copy, reproduce, process, adapt, modify, publish, transmit, display and distribute such Content in any and all media or distribution methods now known or later developed (for clarity, these rights include, for example, curating, transforming, and translating).",
+        "description": "By posting content through the Services, users grant them a transferable and/or sublicensable right, which allows user content to be licensed to third parties."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7035,
+        "paragraph": "(iii) your account should be removed due to unlawful conduct, (iv) your account should be removed due to prolonged inactivity.",
+        "description": "upon any such suspension , deactivation , or termination , we may delete or remove your content and other information related to your account ."
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7035,
+        "paragraph": "(iii) your account should be removed due to unlawful conduct, (iv) your account should be removed due to prolonged inactivity.",
+        "description": "upon any such suspension , deactivation , or termination , we may delete or remove your content and other information related to your account ."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7019,
+        "paragraph": "(ii) any harm to your computer system, loss of data, or other harm that results from your access to or use of the Services or any Content.",
+        "description": "you bear all risks associated with the use of any user content available in connection with the service ."
+      },
+      {
+        "severity": "Low",
+        "category": "[Deprecated]",
+        "source": "tosdr",
+        "score": 0.7018,
+        "paragraph": "This license authorizes us to make your Content available to the rest of the world and to let others do the same.",
+        "description": "You have the right to choose or change the copyright license over content you publish through the Service."
+      },
+      {
+        "severity": "Low",
+        "category": "[Deprecated]",
+        "source": "tosdr",
+        "score": 0.7018,
+        "paragraph": "This license authorizes us to make your Content available to the rest of the world and to let others do the same.",
+        "description": "You have the right to choose or change the copyright license over content you publish through the Service."
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7008,
+        "paragraph": "Attn: Copyright Agent\n1355 Market Street, Suite 900\nSan Francisco, CA 94103\nReports: https://help.twitter.com/forms/dmca\nEmail: copyright@twitter.com\n(for content on Twitter)\nTwitter, Inc.",
+        "description": "attn : copyright agent 500 molino st. , suite 118 los angeles , ca 90013"
+      },
+      {
+        "severity": "High",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7008,
+        "paragraph": "Attn: Copyright Agent\n1355 Market Street, Suite 900\nSan Francisco, CA 94103\nReports: https://help.twitter.com/forms/dmca\nEmail: copyright@twitter.com\n(for content on Twitter)\nTwitter, Inc.",
+        "description": "attn : copyright agent 500 molino st. , suite 118 los angeles , ca 90013"
+      },
+      {
+        "severity": "Low",
+        "category": "Unfairness Detector",
+        "source": "claudette",
+        "score": 0.7001,
+        "paragraph": "The laws of the State of California, excluding its choice of law provisions, will govern these Terms and any dispute that arises between you and Twitter.\nAll disputes related to these Terms or the Services will be brought solely in the federal or state courts located in San Francisco County, California, United States, and you consent to personal jurisdiction and waive any objection as to inconvenient forum.",
+        "description": "the laws of california , u.s.a. , excluding california 's conflict of laws rules , will apply to any disputes arising out of or relating to these terms or the services ."
+      }
+    ]
+  }
+]

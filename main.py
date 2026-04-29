@@ -1,301 +1,504 @@
+"""
+TL;DR Legal — RAG pipeline CLI
+Usage:
+    python main.py <input.txt|folder/> [--threshold 0.70] [--output report.json|report.txt]
+"""
+from __future__ import annotations
+
+import argparse
 import asyncio
-import hashlib
-import logging
+import json
 import os
 import pickle
+import io
+
+class _Unpickler(pickle.Unpickler):
+    """Remaps __main__.KBEntry -> main.KBEntry so cache works whether
+    the file was saved via CLI (__main__) or imported as a module."""
+    def find_class(self, module, name):
+        if module == "__main__":
+            module = "main"
+        return super().find_class(module, name)
+
 import re
+import sys
+import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Optional
 
+# ── offline guard ────────────────────────────────────────────────────────────
 FORCE_HF_OFFLINE = os.getenv("FORCE_HF_OFFLINE", "true").lower() in {"1", "true", "yes"}
-
 if FORCE_HF_OFFLINE:
     os.environ.setdefault("HF_HUB_OFFLINE", "1")
     os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
-    os.environ.setdefault("HF_DATASETS_OFFLINE", "1")
 
-import torch
+import faiss
 import numpy as np
+import ollama
 import pandas as pd
-from fastapi import FastAPI, HTTPException
+import torch
+from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
+from pypdf import PdfReader
+from rich.console import Console
+from rich.table import Table
+from rich import box
 from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("tldr_legal")
+console = Console()
 
-ANALYZE_TIMEOUT_SECONDS = int(os.getenv("ANALYZE_TIMEOUT_SECONDS", "45"))
-CSV_PATH = os.getenv("LEGAL_CSV_PATH", "legal_text_classification.csv")
-EMBED_MODEL_NAME = os.getenv("EMBED_MODEL_NAME", "all-MiniLM-L6-v2")
-SIMILARITY_THRESHOLD = float(os.getenv("SIMILARITY_THRESHOLD", "0.65"))
-BATCH_SIZE = int(os.getenv("SIMILARITY_BATCH_SIZE", "64"))
-TEXT_CORPUS_DIR = os.getenv("TEXT_CORPUS_DIR", "text")
-TEXT_CORPUS_MAX_FILES = int(os.getenv("TEXT_CORPUS_MAX_FILES", "300"))
-TEXT_CORPUS_MAX_CHARS = int(os.getenv("TEXT_CORPUS_MAX_CHARS", "2000"))
-TEXT_CORPUS_ENABLE = os.getenv("TEXT_CORPUS_ENABLE", "true").lower() in {"1", "true", "yes"}
-EMBEDDINGS_CACHE_DIR = os.getenv("EMBEDDINGS_CACHE_DIR", ".embeddings_cache")
-HIGH_RISK_OUTCOMES = {
-    item.strip().lower()
-    for item in os.getenv("HIGH_RISK_OUTCOMES", "").split(",")
-    if item.strip()
+# ── paths ────────────────────────────────────────────────────────────────────
+BASE_DIR = Path(__file__).resolve().parent
+PARQUET_PATH = BASE_DIR / "train-00000-of-00001-a8de7efe0da36666.parquet"
+CASES_PATH   = BASE_DIR / "15012282" / "cases.csv"
+TOPICS_PATH  = BASE_DIR / "15012282" / "topics.csv"
+CACHE_DIR    = BASE_DIR / ".embeddings_cache"
+CACHE_DIR.mkdir(exist_ok=True)
+
+EMBED_MODEL  = os.getenv("EMBED_MODEL", "all-MiniLM-L6-v2")
+LLM_MODEL    = os.getenv("LLM_MODEL",   "llama3.2:1b")
+
+# Claudette label → severity mapping
+# label 0 = unfair clause (HIGH), label 1 = fair/neutral (LOW)
+CLAUDETTE_SEVERITY = {0: "High", 1: "Low"}
+
+# ToS;DR classification → severity
+TOSDR_SEVERITY = {
+    "blocker": "Critical",
+    "bad":     "High",
+    "neutral": "Medium",
+    "good":    "Low",
 }
 
-def resolve_local_model_path(model_name: str) -> Optional[Path]:
-    cache_root = Path(os.getenv("HF_HOME", Path.home() / ".cache" / "huggingface"))
-    
-    # Transform model name to Hugging Face cache format (e.g., sentence-transformers/all-MiniLM-L6-v2 -> models--sentence-transformers--all-MiniLM-L6-v2)
-    formatted_name = model_name.replace("/", "--")
-    if "--" not in formatted_name:
-        formatted_name = f"sentence-transformers--{formatted_name}"
-    
-    snapshot_root = cache_root / "hub" / f"models--{formatted_name}" / "snapshots"
-    if not snapshot_root.exists():
-        return None
 
-    snapshots = [path for path in snapshot_root.iterdir() if path.is_dir()]
-    if not snapshots:
-        return None
-
-    for snapshot in sorted(snapshots, reverse=True):
-        if (snapshot / "modules.json").exists():
-            return snapshot
-
-    return sorted(snapshots, reverse=True)[0]
-
-SENTENCE_RE = re.compile(r"[^.!?\n]+[.!?\n]?")
-
-app = FastAPI(title="TL;DR Legal", version="0.2.0")
-
-BASE_DIR = Path(__file__).resolve().parent
-STATIC_DIR = BASE_DIR / "static"
-STATIC_DIR.mkdir(parents=True, exist_ok=True)
-
-
-data_store = None
-load_error: Optional[str] = None
-
-
-class AnalyzeRequest(BaseModel):
-    text: str = Field(..., description="Full Terms of Service text")
-
-
-class FoundFlag(BaseModel):
-    user_sentence: str
-    case_id: str
-    case_title: str
-    case_outcome: str
-    case_text: str
-
-
-class AnalyzeResponse(BaseModel):
-    found_flags: List[FoundFlag]
-    risk_score: int
+# ── data classes ─────────────────────────────────────────────────────────────
+@dataclass
+class KBEntry:
+    source: str          # "claudette" | "tosdr"
+    text: str            # text used for embedding
+    label: str           # severity label string
+    severity: str        # Critical / High / Medium / Low
+    category: str        # topic title or "Unfairness"
+    description: str     # plain-English description
 
 
 @dataclass
-class DataStore:
-    dataframe: pd.DataFrame
-    model: SentenceTransformer
-    embeddings: np.ndarray
+class Match:
+    paragraph: str
+    entry: KBEntry
+    score: float
 
 
-def split_text_units(text: str) -> List[str]:
-    blocks = [block.strip() for block in re.split(r"\n{2,}", text) if block.strip()]
-    units: List[str] = []
-    for block in blocks:
-        sentences = [sentence.strip() for sentence in SENTENCE_RE.findall(block) if sentence.strip()]
-        if sentences:
-            units.extend(sentences)
-        else:
-            units.append(block)
-    return units
+@dataclass
+class AnalysisResult:
+    file: str
+    matches: list[Match]
+    summary: str
+    elapsed: float
 
 
-def load_data_store() -> DataStore:
-    csv_path = Path(CSV_PATH)
-    if not csv_path.is_absolute():
-        csv_path = BASE_DIR / csv_path
+# ── knowledge base ────────────────────────────────────────────────────────────
+def _cache_key(tag: str) -> Path:
+    return CACHE_DIR / f"kb_{tag}_{EMBED_MODEL.replace('/', '_')}.pkl"
 
-    logger.info("Loading CSV dataset: %s", csv_path)
-    dataframe = pd.read_csv(csv_path)
-    required_columns = ["case_id", "case_outcome", "case_title", "case_text"]
-    missing = [column for column in required_columns if column not in dataframe.columns]
-    if missing:
-        raise RuntimeError(f"CSV missing columns: {', '.join(missing)}")
 
-    dataframe = dataframe[required_columns].dropna()
-    dataframe["case_id"] = dataframe["case_id"].astype(str)
-    dataframe["case_outcome"] = dataframe["case_outcome"].astype(str)
-    dataframe["case_title"] = dataframe["case_title"].astype(str)
-    dataframe["case_text"] = dataframe["case_text"].astype(str)
+def _resolve_model() -> str | Path:
+    """Return local snapshot path when offline, else model name."""
+    if not FORCE_HF_OFFLINE:
+        return EMBED_MODEL
+    cache_root = Path(os.getenv("HF_HOME", Path.home() / ".cache" / "huggingface"))
+    name = EMBED_MODEL.replace("/", "--")
+    if "--" not in name:
+        name = f"sentence-transformers--{name}"
+    snap_root = cache_root / "hub" / f"models--{name}" / "snapshots"
+    if not snap_root.exists():
+        raise RuntimeError(f"Model not cached locally: {EMBED_MODEL}")
+    snaps = sorted(snap_root.iterdir(), reverse=True)
+    for s in snaps:
+        if (s / "modules.json").exists():
+            return s
+    return snaps[0]
 
-    if TEXT_CORPUS_ENABLE:
-        corpus_dir = BASE_DIR / TEXT_CORPUS_DIR
-        if corpus_dir.exists():
-            corpus_rows = []
-            for path in sorted(corpus_dir.glob("*.txt"))[:TEXT_CORPUS_MAX_FILES]:
-                try:
-                    with path.open("r", encoding="utf-8", errors="ignore") as handle:
-                        content = handle.read(TEXT_CORPUS_MAX_CHARS + 1).strip()
-                except Exception:
-                    logger.warning("Failed to read text file: %s", path)
-                    continue
 
-                if not content:
-                    continue
+def load_knowledge_base() -> tuple[list[KBEntry], faiss.IndexFlatIP]:
+    cache = _cache_key("full")
+    if cache.exists():
+        console.log("[dim]Loading cached knowledge base...[/dim]")
+        with cache.open("rb") as f:
+            entries, embeddings = _Unpickler(f).load()
+        index = _build_index(embeddings)
+        console.log(f"[green]KB ready[/green] — {len(entries)} entries")
+        return entries, index
 
-                corpus_rows.append(
-                    {
-                        "case_id": f"text:{path.stem}",
-                        "case_outcome": "text-corpus",
-                        "case_title": path.stem,
-                        "case_text": content[:TEXT_CORPUS_MAX_CHARS],
-                    }
-                )
+    console.log("[bold]Building knowledge base from datasets...[/bold]")
+    entries: list[KBEntry] = []
 
-            if corpus_rows:
-                dataframe = pd.concat([dataframe, pd.DataFrame(corpus_rows)], ignore_index=True)
-                logger.info("Added %d text corpus files.", len(corpus_rows))
-        else:
-            logger.warning("Text corpus directory not found: %s", corpus_dir)
+    # ── Source A: Claudette ──────────────────────────────────────────────────
+    df_c = pd.read_parquet(PARQUET_PATH)
+    for _, row in df_c.iterrows():
+        lbl = int(row["label"])
+        entries.append(KBEntry(
+            source="claudette",
+            text=str(row["text"]),
+            label=str(lbl),
+            severity=CLAUDETTE_SEVERITY.get(lbl, "Medium"),
+            category="Unfairness Detector",
+            description=str(row["text"]),
+        ))
 
-    model_source: str | Path = EMBED_MODEL_NAME
-    if FORCE_HF_OFFLINE:
-        local_model_path = resolve_local_model_path(EMBED_MODEL_NAME)
-        if local_model_path is None:
-            raise RuntimeError(
-                "Offline mode is enabled, but the embedding model is not cached locally. "
-                "Download it once while online, then restart with offline mode enabled."
-            )
-        model_source = local_model_path
+    # ── Source B: ToS;DR ─────────────────────────────────────────────────────
+    df_cases  = pd.read_csv(CASES_PATH)
+    df_topics = pd.read_csv(TOPICS_PATH)[["id", "title"]].rename(
+        columns={"id": "topic_id", "title": "topic_title"}
+    )
+    df_tosdr = df_cases.merge(df_topics, on="topic_id", how="left")
+    df_tosdr["topic_title"] = df_tosdr["topic_title"].fillna("General")
+    df_tosdr["description"] = df_tosdr["description"].fillna("").str.replace(r"\r\n", " ", regex=True).str.strip()
 
+    for _, row in df_tosdr.iterrows():
+        clf = str(row.get("classification", "neutral")).lower()
+        embed_text = str(row["title"])
+        entries.append(KBEntry(
+            source="tosdr",
+            text=embed_text,
+            label=clf,
+            severity=TOSDR_SEVERITY.get(clf, "Medium"),
+            category=str(row["topic_title"]),
+            description=str(row["description"]) or embed_text,
+        ))
+
+    # ── Embed ────────────────────────────────────────────────────────────────
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    logger.info("Embedding device: %s", device)
-    model = SentenceTransformer(str(model_source), device=device)
+    console.log(f"Embedding {len(entries)} entries on [cyan]{device}[/cyan]...")
+    model = SentenceTransformer(str(_resolve_model()), device=device)
+    texts = [e.text for e in entries]
+    embeddings = model.encode(
+        texts, batch_size=64, normalize_embeddings=True,
+        convert_to_numpy=True, show_progress_bar=True,
+    )
 
-    descriptions = dataframe["case_text"].tolist()
-    
-    cache_dir = BASE_DIR / EMBEDDINGS_CACHE_DIR
-    cache_dir.mkdir(exist_ok=True)
-    
-    data_hash = hashlib.sha256(
-        "".join(descriptions).encode("utf-8") + EMBED_MODEL_NAME.encode("utf-8")
-    ).hexdigest()[:16]
-    cache_file = cache_dir / f"embeddings_{data_hash}.pkl"
-    
-    if cache_file.exists():
-        logger.info("Loading cached embeddings from %s", cache_file)
-        with cache_file.open("rb") as f:
-            embeddings = pickle.load(f)
-    else:
-        logger.info("Generating embeddings for %d rows...", len(descriptions))
-        embeddings = model.encode(
-            descriptions,
-            batch_size=64,
-            convert_to_numpy=True,
-            normalize_embeddings=True,
-            show_progress_bar=True,
+    with cache.open("wb") as f:
+        pickle.dump((entries, embeddings), f, protocol=4)
+
+    index = _build_index(embeddings)
+    console.log(f"[green]KB ready[/green] — {len(entries)} entries")
+    return entries, index
+
+
+def _build_index(embeddings: np.ndarray) -> faiss.IndexFlatIP:
+    dim = embeddings.shape[1]
+    index = faiss.IndexFlatIP(dim)          # inner product == cosine on normalised vecs
+    index.add(embeddings.astype("float32"))
+    return index
+
+
+# ── chunking ──────────────────────────────────────────────────────────────────
+def chunk_text(text: str) -> list[str]:
+    paragraphs = [p.strip() for p in re.split(r"\n{2,}", text) if p.strip()]
+    # split very long paragraphs at sentence boundaries
+    result: list[str] = []
+    for para in paragraphs:
+        if len(para) > 800:
+            sentences = re.split(r"(?<=[.!?])\s+", para)
+            result.extend(s.strip() for s in sentences if s.strip())
+        else:
+            result.append(para)
+    return result
+
+
+# ── analysis engine ───────────────────────────────────────────────────────────
+def analyse_text(
+    text: str,
+    model: SentenceTransformer,
+    index: faiss.IndexFlatIP,
+    entries: list[KBEntry],
+    threshold: float,
+) -> list[Match]:
+    paragraphs = chunk_text(text)
+    if not paragraphs:
+        return []
+
+    para_embs = model.encode(
+        paragraphs, batch_size=64, normalize_embeddings=True,
+        convert_to_numpy=True, show_progress_bar=False,
+    ).astype("float32")
+
+    # search top-20 candidates per paragraph
+    scores_matrix, idx_matrix = index.search(para_embs, 20)
+
+    matches: list[Match] = []
+    for p_idx, paragraph in enumerate(paragraphs):
+        # group by category, keep best score per category
+        best: dict[str, Match] = {}
+        for rank in range(scores_matrix.shape[1]):
+            score = float(scores_matrix[p_idx, rank])
+            if score < threshold:
+                break
+            kb_idx = int(idx_matrix[p_idx, rank])
+            entry = entries[kb_idx]
+            cat = entry.category
+            if cat not in best or score > best[cat].score:
+                best[cat] = Match(paragraph=paragraph, entry=entry, score=score)
+        matches.extend(best.values())
+
+    # sort by score descending
+    matches.sort(key=lambda m: m.score, reverse=True)
+    return matches
+
+
+# ── LLM summarisation ─────────────────────────────────────────────────────────
+def summarise_with_llm(matches: list[Match]) -> str:
+    if not matches:
+        return "No significant legal risks detected."
+
+    top = matches[:5]
+    snippets = "\n".join(
+        f"- [{m.entry.severity}] {m.entry.category}: {m.entry.description[:200]}"
+        for m in top
+    )
+    prompt = (
+        "You are a legal risk analyst. Summarize these specific legal risks "
+        "into exactly 3 bullet points in plain English for a regular user. "
+        "Be brief and blunt. No preamble.\n\n"
+        f"{snippets}"
+    )
+    try:
+        resp = ollama.chat(
+            model=LLM_MODEL,
+            messages=[{"role": "user", "content": prompt}],
+            options={"num_predict": 256},
         )
-        with cache_file.open("wb") as f:
-            pickle.dump(embeddings, f)
-        logger.info("Cached embeddings to %s", cache_file)
-
-    logger.info("Loaded %d red-flag rows.", len(dataframe))
-    return DataStore(dataframe=dataframe, model=model, embeddings=embeddings)
+        return resp["message"]["content"].strip()
+    except Exception as exc:
+        return f"[LLM unavailable: {exc}]"
 
 
-def outcome_is_high(outcome: str) -> bool:
-    if not HIGH_RISK_OUTCOMES:
-        return True
-    normalized = outcome.strip().lower()
-    return normalized in HIGH_RISK_OUTCOMES
+# ── rich console output ───────────────────────────────────────────────────────
+SEVERITY_COLOR = {
+    "Critical": "bold red",
+    "High":     "red",
+    "Medium":   "yellow",
+    "Low":      "green",
+}
 
 
-def run_analysis(text: str) -> AnalyzeResponse:
-    if data_store is None:
-        raise RuntimeError("Dataset is not ready.")
+def print_results(result: AnalysisResult) -> None:
+    console.rule(f"[bold]{result.file}[/bold]")
 
-    units = split_text_units(text)
-    if not units:
-        return AnalyzeResponse(found_flags=[], risk_score=0)
+    if not result.matches:
+        console.print("[green]No risks found above threshold.[/green]")
+        return
 
-    found_flags: List[FoundFlag] = []
-    risk_score = 0
+    table = Table(box=box.ROUNDED, show_lines=True, expand=True)
+    table.add_column("Sev",      style="bold", width=8)
+    table.add_column("Category", width=20)
+    table.add_column("Source",   width=10)
+    table.add_column("Score",    width=6)
+    table.add_column("Matched paragraph (truncated)", no_wrap=False)
+    table.add_column("KB description (truncated)",    no_wrap=False)
 
-    for start in range(0, len(units), BATCH_SIZE):
-        batch_units = units[start : start + BATCH_SIZE]
-        batch_embeddings = data_store.model.encode(
-            batch_units,
-            convert_to_numpy=True,
-            normalize_embeddings=True,
-            show_progress_bar=False,
+    for m in result.matches[:20]:
+        color = SEVERITY_COLOR.get(m.entry.severity, "white")
+        table.add_row(
+            f"[{color}]{m.entry.severity}[/{color}]",
+            m.entry.category,
+            m.entry.source,
+            f"{m.score:.2f}",
+            m.paragraph[:120] + ("…" if len(m.paragraph) > 120 else ""),
+            m.entry.description[:120] + ("…" if len(m.entry.description) > 120 else ""),
         )
-        similarity = cosine_similarity(batch_embeddings, data_store.embeddings)
 
-        for sentence_index, sentence in enumerate(batch_units):
-            match_indices = np.where(similarity[sentence_index] >= SIMILARITY_THRESHOLD)[0]
-            for match_idx in match_indices:
-                row = data_store.dataframe.iloc[int(match_idx)]
-                outcome = str(row["case_outcome"])
-                if outcome_is_high(outcome):
-                    risk_score += 1
-                found_flags.append(
-                    FoundFlag(
-                        user_sentence=sentence,
-                        case_id=str(row["case_id"]),
-                        case_title=str(row["case_title"]),
-                        case_outcome=outcome,
-                        case_text=str(row["case_text"]),
-                    )
-                )
+    console.print(table)
+    console.print(f"\n[bold cyan]Plain-English Summary[/bold cyan]")
+    console.print(result.summary)
+    console.print(f"\n[dim]Analysed in {result.elapsed:.2f}s | {len(result.matches)} flags[/dim]\n")
 
-    return AnalyzeResponse(found_flags=found_flags, risk_score=risk_score)
+
+# ── output serialisation ──────────────────────────────────────────────────────
+def export_json(results: list[AnalysisResult], path: Path) -> None:
+    data = []
+    for r in results:
+        data.append({
+            "file": r.file,
+            "elapsed_s": round(r.elapsed, 2),
+            "summary": r.summary,
+            "flags": [
+                {
+                    "severity":    m.entry.severity,
+                    "category":    m.entry.category,
+                    "source":      m.entry.source,
+                    "score":       round(m.score, 4),
+                    "paragraph":   m.paragraph,
+                    "description": m.entry.description,
+                }
+                for m in r.matches
+            ],
+        })
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    console.print(f"[green]JSON report saved:[/green] {path}")
+
+
+def export_txt(results: list[AnalysisResult], path: Path) -> None:
+    lines: list[str] = []
+    for r in results:
+        lines.append(f"{'='*70}")
+        lines.append(f"FILE: {r.file}  ({len(r.matches)} flags, {r.elapsed:.2f}s)")
+        lines.append(f"{'='*70}")
+        lines.append("PLAIN-ENGLISH SUMMARY:")
+        lines.append(r.summary)
+        lines.append("")
+        lines.append("DETAILED FLAGS:")
+        for m in r.matches:
+            lines.append(f"  [{m.entry.severity}] {m.entry.category} (score={m.score:.2f})")
+            lines.append(f"    Paragraph : {m.paragraph[:200]}")
+            lines.append(f"    KB entry  : {m.entry.description[:200]}")
+            lines.append("")
+    path.write_text("\n".join(lines), encoding="utf-8")
+    console.print(f"[green]Text report saved:[/green] {path}")
+
+
+# ── FastAPI web server ────────────────────────────────────────────────────────
+app = FastAPI(title="TL;DR Legal", version="0.3.0")
+STATIC_DIR = BASE_DIR / "static"
+STATIC_DIR.mkdir(exist_ok=True)
+
+_kb: tuple[list[KBEntry], faiss.IndexFlatIP] | None = None
+_model: SentenceTransformer | None = None
+
+
+class WebRequest(BaseModel):
+    text: str
+    threshold: float = 0.70
 
 
 @app.on_event("startup")
-async def startup_event() -> None:
-    global data_store, load_error
-
-    try:
-        data_store = await asyncio.to_thread(load_data_store)
-        load_error = None
-    except Exception as exc:
-        data_store = None
-        load_error = str(exc)
-        logger.exception("Failed to load dataset or embeddings.")
+async def _startup() -> None:
+    global _kb, _model
+    _kb = await asyncio.to_thread(load_knowledge_base)
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    _model = SentenceTransformer(str(_resolve_model()), device=device)
 
 
 @app.get("/", response_class=HTMLResponse)
-def root() -> HTMLResponse:
-    index_path = STATIC_DIR / "index.html"
-    if not index_path.exists():
-        raise HTTPException(status_code=404, detail="index.html not found.")
-    return HTMLResponse(index_path.read_text(encoding="utf-8"))
+def _root() -> HTMLResponse:
+    p = STATIC_DIR / "index.html"
+    if not p.exists():
+        raise HTTPException(404, "index.html not found")
+    return HTMLResponse(p.read_text(encoding="utf-8"))
 
 
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 
-@app.post("/analyze", response_model=AnalyzeResponse)
-async def analyze(payload: AnalyzeRequest) -> AnalyzeResponse:
-    if not payload.text or not payload.text.strip():
-        raise HTTPException(status_code=400, detail="Text must not be empty.")
-    if data_store is None:
-        detail = load_error or "Dataset is still loading or failed to load."
-        raise HTTPException(status_code=503, detail=detail)
-
+@app.post("/upload-pdf")
+async def _upload_pdf(file: UploadFile = File(...)):
+    if not file.filename.lower().endswith(".pdf"):
+        raise HTTPException(400, "Only PDF files are accepted.")
+    contents = await file.read()
+    if len(contents) > 20 * 1024 * 1024:  # 20 MB cap
+        raise HTTPException(413, "PDF exceeds 20 MB limit.")
     try:
-        result = await asyncio.wait_for(
-            asyncio.to_thread(run_analysis, payload.text),
-            timeout=ANALYZE_TIMEOUT_SECONDS,
-        )
-        return result
-    except asyncio.TimeoutError as exc:
-        raise HTTPException(status_code=504, detail="Analysis timed out.") from exc
+        reader = PdfReader(io.BytesIO(contents))
+        pages = [page.extract_text() or "" for page in reader.pages]
+        text = "\n\n".join(pages).strip()
     except Exception as exc:
-        logger.exception("Analysis failed.")
-        raise HTTPException(status_code=500, detail="Analysis failed.") from exc
+        raise HTTPException(422, f"Could not parse PDF: {exc}")
+    if not text:
+        raise HTTPException(422, "No extractable text found in this PDF.")
+    return {"text": text, "pages": len(reader.pages)}
+
+
+@app.post("/analyze")
+async def _analyze(payload: WebRequest):
+    if not payload.text.strip():
+        raise HTTPException(400, "Text must not be empty.")
+    if _kb is None:
+        raise HTTPException(503, "Knowledge base is still loading.")
+    entries, index = _kb
+
+    def _run():
+        matches = analyse_text(payload.text, _model, index, entries, payload.threshold)
+        summary = summarise_with_llm(matches)
+        return matches, summary
+
+    matches, summary = await asyncio.to_thread(_run)
+    return {
+        "summary": summary,
+        "risk_score": sum(1 for m in matches if m.entry.severity in {"Critical", "High"}),
+        "flags": [
+            {
+                "severity":    m.entry.severity,
+                "category":    m.entry.category,
+                "source":      m.entry.source,
+                "score":       round(m.score, 4),
+                "paragraph":   m.paragraph,
+                "description": m.entry.description,
+            }
+            for m in matches
+        ],
+    }
+
+
+# ── CLI entry point ────────────────────────────────────────────────────────────
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="TL;DR Legal — RAG-based Terms of Service analyser"
+    )
+    parser.add_argument("input", help="Path to a .txt file or a folder of .txt files")
+    parser.add_argument("--threshold", type=float, default=0.70,
+                        help="Cosine similarity threshold (default: 0.70)")
+    parser.add_argument("--output", default=None,
+                        help="Output file path (.json or .txt). Omit to print only.")
+    args = parser.parse_args()
+
+    input_path = Path(args.input)
+    if input_path.is_dir():
+        files = sorted(input_path.glob("*.txt"))
+    elif input_path.is_file():
+        files = [input_path]
+    else:
+        console.print(f"[red]Input not found:[/red] {input_path}")
+        sys.exit(1)
+
+    if not files:
+        console.print("[yellow]No .txt files found.[/yellow]")
+        sys.exit(0)
+
+    # load KB
+    entries, index = load_knowledge_base()
+
+    # load embed model (reuse same instance for analysis)
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model = SentenceTransformer(str(_resolve_model()), device=device)
+
+    results: list[AnalysisResult] = []
+
+    for txt_file in files:
+        t0 = time.perf_counter()
+        text = txt_file.read_text(encoding="utf-8", errors="ignore")
+        matches = analyse_text(text, model, index, entries, args.threshold)
+        summary = summarise_with_llm(matches)
+        elapsed = time.perf_counter() - t0
+
+        result = AnalysisResult(
+            file=txt_file.name,
+            matches=matches,
+            summary=summary,
+            elapsed=elapsed,
+        )
+        results.append(result)
+        print_results(result)
+
+    # export
+    if args.output:
+        out_path = Path(args.output)
+        if out_path.suffix == ".txt":
+            export_txt(results, out_path)
+        else:
+            export_json(results, out_path)
+
+
+if __name__ == "__main__":
+    main()

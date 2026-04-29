@@ -1,0 +1,27 @@
+INFO:     Started server process [11228]
+INFO:     Waiting for application startup.
+[00:07:43] Loading cached knowledge base...                         main.py:117
+ERROR:    Traceback (most recent call last):
+  File "c:\Code\GitHub\Sign-languag-translator\.venv\Lib\site-packages\starlette\routing.py", line 638, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+               ~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "c:\Code\GitHub\Sign-languag-translator\.venv\Lib\site-packages\fastapi\routing.py", line 241, in __aenter__
+    await self._router._startup()
+  File "c:\Code\GitHub\Sign-languag-translator\.venv\Lib\site-packages\fastapi\routing.py", line 4884, in _startup
+    await handler()
+  File "c:\Code\GitHub\Sign-languag-translator\main.py", line 369, in _startup
+    _kb = await asyncio.to_thread(load_knowledge_base)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ok\AppData\Local\Programs\Python\Python314\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ok\AppData\Local\Programs\Python\Python314\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\ok\AppData\Local\Programs\Python\Python314\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "c:\Code\GitHub\Sign-languag-translator\main.py", line 119, in load_knowledge_base
+    entries, embeddings = pickle.load(f)
+                          ~~~~~~~~~~~^^^
+AttributeError: module '__main__' has no attribute 'KBEntry'
+
+ERROR:    Application startup failed. Exiting.
