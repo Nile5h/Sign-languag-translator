@@ -3,10 +3,8 @@ __pycache__/
 *.py[cod]
 .venv/
 
-# Large data files — not needed in repo
+# Large data files
 text/
-15012282/
-train-00000-of-00001-a8de7efe0da36666.parquet
 legal_text_classification.csv
 
 # Generated cache
