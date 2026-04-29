@@ -1,6 +1,8 @@
 import asyncio
+import hashlib
 import logging
 import os
+import pickle
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -13,6 +15,7 @@ if FORCE_HF_OFFLINE:
     os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
     os.environ.setdefault("HF_DATASETS_OFFLINE", "1")
 
+import torch
 import numpy as np
 import pandas as pd
 from fastapi import FastAPI, HTTPException
@@ -28,12 +31,13 @@ logger = logging.getLogger("tldr_legal")
 ANALYZE_TIMEOUT_SECONDS = int(os.getenv("ANALYZE_TIMEOUT_SECONDS", "45"))
 CSV_PATH = os.getenv("LEGAL_CSV_PATH", "legal_text_classification.csv")
 EMBED_MODEL_NAME = os.getenv("EMBED_MODEL_NAME", "all-MiniLM-L6-v2")
-SIMILARITY_THRESHOLD = float(os.getenv("SIMILARITY_THRESHOLD", "0.75"))
+SIMILARITY_THRESHOLD = float(os.getenv("SIMILARITY_THRESHOLD", "0.65"))
 BATCH_SIZE = int(os.getenv("SIMILARITY_BATCH_SIZE", "64"))
 TEXT_CORPUS_DIR = os.getenv("TEXT_CORPUS_DIR", "text")
 TEXT_CORPUS_MAX_FILES = int(os.getenv("TEXT_CORPUS_MAX_FILES", "300"))
 TEXT_CORPUS_MAX_CHARS = int(os.getenv("TEXT_CORPUS_MAX_CHARS", "2000"))
 TEXT_CORPUS_ENABLE = os.getenv("TEXT_CORPUS_ENABLE", "true").lower() in {"1", "true", "yes"}
+EMBEDDINGS_CACHE_DIR = os.getenv("EMBEDDINGS_CACHE_DIR", ".embeddings_cache")
 HIGH_RISK_OUTCOMES = {
     item.strip().lower()
     for item in os.getenv("HIGH_RISK_OUTCOMES", "").split(",")
@@ -42,7 +46,13 @@ HIGH_RISK_OUTCOMES = {
 
 def resolve_local_model_path(model_name: str) -> Optional[Path]:
     cache_root = Path(os.getenv("HF_HOME", Path.home() / ".cache" / "huggingface"))
-    snapshot_root = cache_root / "hub" / "models--sentence-transformers--all-MiniLM-L6-v2" / "snapshots"
+    
+    # Transform model name to Hugging Face cache format (e.g., sentence-transformers/all-MiniLM-L6-v2 -> models--sentence-transformers--all-MiniLM-L6-v2)
+    formatted_name = model_name.replace("/", "--")
+    if "--" not in formatted_name:
+        formatted_name = f"sentence-transformers--{formatted_name}"
+    
+    snapshot_root = cache_root / "hub" / f"models--{formatted_name}" / "snapshots"
     if not snapshot_root.exists():
         return None
 
@@ -163,14 +173,36 @@ def load_data_store() -> DataStore:
             )
         model_source = local_model_path
 
-    model = SentenceTransformer(str(model_source))
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    logger.info("Embedding device: %s", device)
+    model = SentenceTransformer(str(model_source), device=device)
+
     descriptions = dataframe["case_text"].tolist()
-    embeddings = model.encode(
-        descriptions,
-        convert_to_numpy=True,
-        normalize_embeddings=True,
-        show_progress_bar=False,
-    )
+    
+    cache_dir = BASE_DIR / EMBEDDINGS_CACHE_DIR
+    cache_dir.mkdir(exist_ok=True)
+    
+    data_hash = hashlib.sha256(
+        "".join(descriptions).encode("utf-8") + EMBED_MODEL_NAME.encode("utf-8")
+    ).hexdigest()[:16]
+    cache_file = cache_dir / f"embeddings_{data_hash}.pkl"
+    
+    if cache_file.exists():
+        logger.info("Loading cached embeddings from %s", cache_file)
+        with cache_file.open("rb") as f:
+            embeddings = pickle.load(f)
+    else:
+        logger.info("Generating embeddings for %d rows...", len(descriptions))
+        embeddings = model.encode(
+            descriptions,
+            batch_size=64,
+            convert_to_numpy=True,
+            normalize_embeddings=True,
+            show_progress_bar=True,
+        )
+        with cache_file.open("wb") as f:
+            pickle.dump(embeddings, f)
+        logger.info("Cached embeddings to %s", cache_file)
 
     logger.info("Loaded %d red-flag rows.", len(dataframe))
     return DataStore(dataframe=dataframe, model=model, embeddings=embeddings)
@@ -229,7 +261,7 @@ async def startup_event() -> None:
     global data_store, load_error
 
     try:
-        data_store = load_data_store()
+        data_store = await asyncio.to_thread(load_data_store)
         load_error = None
     except Exception as exc:
         data_store = None

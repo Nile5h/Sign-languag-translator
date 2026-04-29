@@ -44,7 +44,7 @@ Open the app at `http://127.0.0.1:8000`.
 - `TEXT_CORPUS_MAX_FILES` - Maximum number of `.txt` files to read.
 - `TEXT_CORPUS_MAX_CHARS` - Maximum characters to read from each text file.
 - `EMBED_MODEL_NAME` - Sentence-transformers model name. Defaults to `all-MiniLM-L6-v2`.
-- `SIMILARITY_THRESHOLD` - Minimum cosine similarity for a match. Defaults to `0.75`.
+- `SIMILARITY_THRESHOLD` - Minimum cosine similarity for a match. Defaults to `0.65`.
 - `HIGH_RISK_OUTCOMES` - Comma-separated list of `case_outcome` values counted as high risk.
 - `FORCE_HF_OFFLINE` - Defaults to `true`. Prevents Hugging Face network access at runtime.
 
